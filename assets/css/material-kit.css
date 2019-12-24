@@ -6672,7 +6672,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 }
 
 .page-header .container {
-    padding-top: 140px;
+    padding-top: 90px;
     color: #FFFFFF;
 }
 
@@ -8445,7 +8445,7 @@ select.selectpicker {
 
 .presentation-page .page-header,
 .index-page .page-header {
-    height: 90vh;
+    height: 50vh;
     overflow: hidden;
 }
 
@@ -9339,7 +9339,7 @@ select.selectpicker {
 @media (max-width: 991px) {
     .page-header {
         height: auto;
-        min-height: 60vh;
+        min-height: 40vh;
     }
     .page-header .iframe-container {
         padding: 30px 0;
