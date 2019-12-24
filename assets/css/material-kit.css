@@ -3437,7 +3437,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar.navbar-default .dropdown-menu li > a:focus {
     color: #FFFFFF;
     background-color: #1F5DF8;
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(6, 19, 255, 0.4);
 }
 
 .dropdown .dropdown-menu,
@@ -8180,7 +8180,7 @@ select.selectpicker {
 }
 
 .bootstrap-select.btn-group .dropdown-menu li a:focus, .bootstrap-select.btn-group .dropdown-menu li a:hover {
-    box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(156, 39, 176, 0.6);
+    box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(170, 39, 176, 0.6);
 }
 
 .bootstrap-select.btn-group .dropdown-menu li a.opt {
@@ -9545,7 +9545,7 @@ select.selectpicker {
         padding-left: 46px;
     }
     .navbar .navbar-collapse .open .dropdown-menu > li > a:hover, .navbar .navbar-collapse .open .dropdown-menu > li > a:focus {
-        color: #000;
+        color: #3C4858;
     }
     .navbar .navbar-collapse .dropdown-menu li {
         margin: 0 15px;
