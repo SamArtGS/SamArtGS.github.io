@@ -2132,7 +2132,7 @@ output {
 .form-control,
 .form-group .form-control {
     border: 0;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#1A14FF, #1A14FF), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -2205,14 +2205,14 @@ fieldset[disabled]
 
 .form-group.is-focused .form-control {
     outline: none;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#1A58DC, #1A58DC), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 100% 2px, 100% 1px;
     box-shadow: none;
     transition-duration: 0.3s;
 }
 
 .form-group.is-focused .form-control .material-input:after {
-    background-color: #9c27b0;
+    background-color: #1A14FF;
 }
 
 .form-group.is-focused.form-info .form-control {
