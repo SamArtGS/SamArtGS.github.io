@@ -6659,7 +6659,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 }
 
 .page-header {
-    height: 40vh;
+    height: 120vh;
     background-position: center center;
     background-size: cover;
     margin: 0;
@@ -6672,7 +6672,8 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 }
 
 .page-header .container {
-    padding-top: 90px;
+    padding-top: 100px;
+
     color: #FFFFFF;
 }
 
@@ -9051,7 +9052,7 @@ select.selectpicker {
 }
 
 .product-page .page-header {
-    min-height: 60vh;
+    min-height: 100vh;
     height: auto;
     background-position: top center;
 }
@@ -9422,7 +9423,7 @@ select.selectpicker {
     }
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 993px) {
     #bodyClick {
         height: 100%;
         width: 100%;
