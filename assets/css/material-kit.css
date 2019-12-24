@@ -7912,7 +7912,7 @@ footer .pull-center {
     content: '';
     display: inline-block;
     border: 0 0 7px 7px solid transparent;
-    border-bottom-color: #9c27b0;
+    border-bottom-color: #2537EE;
     border-top-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     bottom: 4px;
@@ -7921,7 +7921,7 @@ footer .pull-center {
 
 .bootstrap-datetimepicker-widget table td.active > div,
 .bootstrap-datetimepicker-widget table td.active:hover > div {
-    background-color: #9c27b0;
+    background-color: #2537EE;
     color: #FFFFFF;
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
@@ -7953,7 +7953,7 @@ footer .pull-center {
 }
 
 .bootstrap-datetimepicker-widget table td span.active {
-    background-color: #9c27b0;
+    background-color: #2537EE;
     color: #FFFFFF;
 }
 
@@ -8343,7 +8343,7 @@ select.selectpicker {
 
 .select-with-transition {
     border: 0 !important;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#2537EE, #2537EE), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -8365,7 +8365,7 @@ select.selectpicker {
 
 .btn-group.bootstrap-select.show-tick.open .select-with-transition {
     outline: none !important;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2) !important;
+    background-image: linear-gradient(#2537EE, #2537EE), linear-gradient(#D2D2D2, #D2D2D2) !important;
     background-size: 100% 2px, 100% 1px !important;
     box-shadow: none;
     transition-duration: 0.3s !important;
