@@ -6659,7 +6659,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 }
 
 .page-header {
-    height: 50vh;
+    height: 40vh;
     background-position: center center;
     background-size: cover;
     margin: 0;
