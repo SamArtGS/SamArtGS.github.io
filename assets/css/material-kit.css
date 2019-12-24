@@ -6659,7 +6659,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 }
 
 .page-header {
-    height: 120vh;
+    height: 100vh;
     background-position: center center;
     background-size: cover;
     margin: 0;
@@ -9325,6 +9325,11 @@ select.selectpicker {
 }
 
 @media (min-width: 992px) {
+    .page-header {
+        height: auto;
+        min-height: 120vh;
+    }
+
     .navbar .navbar-collapse {
         text-align: center;
     }
@@ -9335,12 +9340,18 @@ select.selectpicker {
     .table-responsive {
         overflow: auto;
     }
+    .contactus-2 .map {
+        height: 600px;
+        min-height: 400px;
+    }
 }
+
+
 
 @media (max-width: 991px) {
     .page-header {
         height: auto;
-        min-height: 40vh;
+        min-height: 100vh;
     }
     .page-header .iframe-container {
         padding: 30px 0;
@@ -9357,7 +9368,8 @@ select.selectpicker {
     }
     .contactus-2 .map {
         height: auto;
-        min-height: 910px;
+        min-height: 350px;
+        ma
     }
     .carousel .page-header {
         padding: 0 30px;
@@ -9595,3 +9607,5 @@ select.selectpicker {
         width: 920px;
     }
 }
+
+
