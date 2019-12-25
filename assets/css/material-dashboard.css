@@ -791,6 +791,7 @@ h2.title {
 .off-canvas-sidebar .logo {
     position: relative;
     padding: 15px 15px;
+    
     z-index: 4;
 }
 

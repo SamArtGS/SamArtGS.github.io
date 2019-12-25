@@ -3068,6 +3068,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar.navbar-inverse .dropdown-menu .active > a {
     background-color: #212121;
     color: #fff;
+    box-shadow: 0 12px 20px -10px rgba(33, 33, 33, 0.28), 0 4px 20px 0px 
 }
 
 .navbar.navbar-inverse .dropdown-menu .active > a:hover, .navbar.navbar-inverse .dropdown-menu .active > a:focus {
