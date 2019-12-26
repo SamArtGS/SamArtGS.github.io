@@ -791,7 +791,7 @@ h2.title {
 .off-canvas-sidebar .logo {
     position: relative;
     padding: 15px 15px;
-    
+    /*padding-top: 80px;*/
     z-index: 4;
 }
 
@@ -801,6 +801,7 @@ h2.title {
     position: absolute;
     bottom: 0;
     right: 10%;
+    /*padding-top: 0px;*/
     height: 1px;
     width: 80%;
     background-color: rgba(180, 180, 180, 0.3);
@@ -6376,6 +6377,7 @@ footer .btn {
     .sidebar .nav-mobile-menu {
         display: none;
     }
+    
 }
 
 
@@ -6785,4 +6787,12 @@ footer .btn {
     .table-responsive {
         overflow: visible;
     }
+    .sidebar .logo,
+    .off-canvas-sidebar .logo {
+    position: relative;
+    padding: 15px 15px;
+    padding-top: 80px;
+    z-index: 4;
+    }
+
 }

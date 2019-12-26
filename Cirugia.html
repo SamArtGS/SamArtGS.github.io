@@ -10,11 +10,11 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
-    <link href="../assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
+    <link href="assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../assets/css/demo.css" rel="stylesheet" />
+    <link href="assets/css/demo.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -35,46 +35,46 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
+                    <li>
                         <a href="dashboard.html">
                             <i class="material-icons">dashboard</i>
                             <p>Vista General</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./user.html">
+                        <a href="DatosPaciente.html">
                             <i class="material-icons">person</i>
                             <p>Datos personales</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./table.html">
+                        <a href="HistoriaClinica.html">
                             <i class="material-icons">fingerprint</i>
                             <p>Historia Clínica</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./typography.html">
+                        <a href="ConsultaGeneral.html">
                             <i class="material-icons">accessibility_new</i>
                             <p>Consultas generales</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="./icons.html">
+                    <li class="active">
+                        <a href="Cirugia.html">
                             <i class="material-icons">gesture</i>
                             <p>Cirugías</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./maps.html">
+                        <a href="Archivos.html">
                             <i class="material-icons">folder_shared</i>
                             <p>Archivos</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./notifications.html">
-                            <i class="material-icons text-gray">insert_invitation</i>
-                            <p>Citas</p>
+                        <a href="CitasPaciente.html">
+                            <i class="material-icons text-gray">access_time</i>
+                            <p>Citas programadas</p>
                         </a>
                     </li>
                    
@@ -97,18 +97,20 @@
                         <ul class="nav navbar-nav navbar-right">
                               <li>
                                   <a href="ListaPaciente.html">
+                                    <i class="material-icons text-gray">table_chart</i>
                                       Tabla general
                                   </a>
                               </li>
                               <li>
                                   <a href="#pablo">
-                                      Citas
+                                        <i class="material-icons text-gray">insert_invitation</i>
+                                      Calendario
                                   </a>
                               </li>
                              
                               <li class="dropdown">
                                   <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                      
+                                        <i class="material-icons text-gray">face</i>
                                           Perfil
                                       
                                   </a>
@@ -120,10 +122,14 @@
                                           <a href="#pablo">Datos médicos</a>
                                       </li>
                                       <li>
+                                        
                                           <a href="#pablo">Configuración página</a>
+                                          
                                       </li>
                                       <li class="divider"></li>
-                                      <li><a href="index.html">Cerrar Sesión</a></li>
+                                      <li>
+                                        
+                                        <a href="index.html">Cerrar Sesión</a></li>
                                   </ul>
                               </li>
                          </ul>
@@ -138,9 +144,9 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header" data-background-color="purple">
+                                <div class="card-header" data-background-color="blue">
                                     <h4 class="title">Edit Profile</h4>
                                     <p class="category">Complete your profile</p>
                                 </div>
@@ -219,29 +225,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                                        <button type="submit" class="btn btn-success pull-right">Update Profile</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card card-profile">
-                                <div class="card-avatar">
-                                    <a href="#pablo">
-                                        <img class="img" src="../assets/img/faces/marc.jpg" />
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h6 class="category text-gray">CEO / Co-Founder</h6>
-                                    <h4 class="card-title">Alec Thompson</h4>
-                                    <p class="card-content">
-                                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                                    </p>
-                                    <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -284,22 +274,30 @@
     </div>
 </body>
 <!--   Core JS Files   -->
-<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets/js/material.min.js" type="text/javascript"></script>
+<script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
-<script src="../assets/js/chartist.min.js"></script>
+<script src="assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
-<script src="../assets/js/arrive.min.js"></script>
+<script src="assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
-<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="../assets/js/bootstrap-notify.js"></script>
+<script src="assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
-<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
+<script src="assets/js/material-dashboard.js"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
+<script src="assets/js/demo.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
 
 </html>
