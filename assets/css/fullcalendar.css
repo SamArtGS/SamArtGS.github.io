@@ -17,7 +17,7 @@
 	
 html .fc,
 .fc table {
-	font-size: 1em;
+	font-size: 12px;
 	font-family: "Helvetica Neue",Helvetica;
 
 	}
@@ -61,17 +61,18 @@ html .fc,
 .fc-header-title h2 {
 	margin-top: 0;
 	white-space: nowrap;
-	font-size: 32px;
+	font-size: 18px;
     font-weight: 100;
     margin-bottom: 10px;
+    color: #000;
 }
 	
 .fc .fc-header-space {
-	padding-left: 10px;
+	padding-left: 5px;
 	}
 	
 .fc-header .fc-button {
-	margin-bottom: 1em;
+	margin-bottom: 4px;
 	vertical-align: top;
 	}
 	
@@ -134,8 +135,8 @@ html .fc,
 }
 
 .fc-state-highlight > div > div.fc-day-number{
-    background-color: #ff3b30;
-    color: #FFFFFF;
+    background-color: #4050F8;
+    color: #FFF;
     border-radius: 50%;
     margin: 4px;
 }
@@ -600,7 +601,7 @@ table.fc-border-separate {
 	
 .fc .ui-draggable-dragging .fc-event-bg, /* TODO: something nicer like .fc-opacity */
 .fc-select-helper .fc-event-bg {
-	display: none\9; /* for IE6/7/8. nested opacity filters while dragging don't work */
+	display: none; /* for IE6/7/8. nested opacity filters while dragging don't work */
 	}
 	
 /* resizable */

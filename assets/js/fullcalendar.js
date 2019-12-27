@@ -1629,7 +1629,7 @@ var dateFormatters = {
 	M	: function(d)	{ return d.getMonth() + 1 },
 	MM	: function(d)	{ return zeroPad(d.getMonth() + 1) },
 	MMM	: function(d,o)	{ return o.monthNamesShort[d.getMonth()] },
-	MMMM: function(d,o)	{ return o.monthNames[d.getMonth()] },
+	MMMM: function(d,o)	{ return o.monthNamesShort[d.getMonth()] },
 	yy	: function(d)	{ return (d.getFullYear()+'').substring(2) },
 	yyyy: function(d)	{ return d.getFullYear() },
 	t	: function(d)	{ return d.getHours() < 12 ? 'a' : 'p' },
