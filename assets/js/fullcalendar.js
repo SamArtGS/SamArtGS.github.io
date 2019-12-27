@@ -19,7 +19,7 @@ var defaults = {
 
 	// display
 	defaultView: 'month',
-	aspectRatio: 1.35,
+	aspectRatio: 2,
 	header: {
 		left: 'title',
 		center: '',
@@ -65,6 +65,7 @@ var defaults = {
 	monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dic'],
 	dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
 	dayNamesShort: ['Dom','Lun','Mar','Mier','Jue','Vie','Sab'],
+
 	buttonText: {
 		prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
 		next: "<span class='fc-text-arrow'>&rsaquo;</span>",
@@ -72,7 +73,7 @@ var defaults = {
 		nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
 		today: 'Hoy',
 		month: 'Mes',
-		week: 'Semana',
+		week: 'Sem',
 		day: 'Día'
 	},
 	

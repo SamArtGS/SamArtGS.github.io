@@ -72,7 +72,7 @@ html .fc,
 	}
 	
 .fc-header .fc-button {
-	margin-bottom: 4px;
+	margin-bottom: 1px;
 	vertical-align: top;
 	}
 	
@@ -154,12 +154,13 @@ html .fc,
 
 .fc-button {
 	position: relative;
+	
 	display: inline-block;
-	padding: 0 .6em;
-	overflow: hidden;
+	padding: 0 ;
+	
 	height: 1.9em;
 	line-height: 1.9em;
-	white-space: nowrap;
+	
 	cursor: pointer;
 	}
 	
@@ -216,7 +217,7 @@ html .fc,
 	color: #1F5DF8;	
 }
 .fc-button-month.fc-state-default, .fc-button-agendaWeek.fc-state-default, .fc-button-agendaDay.fc-state-default{
-    min-width: 67px;
+    min-width: 40px;
 	text-align: center;
 	transition: all 0.2s;
 	-webkit-transition: all 0.2s;
