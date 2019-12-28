@@ -53,14 +53,14 @@
                             <p>Historia Clínica</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="Diagnosticos.html">
                             <i class="material-icons">accessibility_new</i>
                             <p>Diagnósticos</p>
                         </a>
                     </li>
                     
-                    <li class="active">
+                    <li >
                         <a href="Archivos.html">
                             <i class="material-icons">folder_shared</i>
                             <p>Archivos</p>
@@ -138,64 +138,79 @@
             </nav>
             <div class="content">
                 <div class="container-fluid">
+                    <div class="row" style="padding-left: 40px">
+                        
+                        <h3>  <b>Diagnóstico:</b> Diabetes tipo 2</h3>
+                    </div>
+
+
                     <div class="row">
                         <div class="col-md-12">
+
+                            <a target="_blank" class="btn btn-primary pull-right" onclick="window.location.href = 'EditarHC.html';">
+                                    <i class="material-icons">add</i> Nueva consulta general
+                                </a>
+
+                               
+
+                                
+
                             <div class="card">
-                                <div class="card-header" data-background-color="azul">
-                                    <h4 class="title">Archivos</h4>
-                                    <p class="category">Escaneados de análisis de laboratorio, radiografías y miscelánea adjunta</p>
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">Consultas generales</h4>
+                                    <p class="category">Consultas generales realizadas del paciente por éste diagnóstico</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-info">
-                                            <th>Fecha-Hora</th>
-                                            <th>Tipo</th>
-                                            <th>Padecimiento</th>
-                                            <th>Diagnóstico</th>
-                                            <th>Nota Médica</th>
+                                            <th>Fecha</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Terminado</th>
+                                            <th>Fecha Fin</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de Orina</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
+                                            <tr onclick="window.location.href = 'TablasCGyC.html';">
+                                                <td>17-12-2019</td>
+                                                <td>Diabetes tipo 2</td>
+                                                <td>Se presento dadas las actividades del individuo</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
+                                                <td>17-12-2019</td>
                                             </tr>
                                             <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
+                                                <td>17-12-2019</td>
+                                                <td>Neumonía</td>
+                                                <td>Empezó como un caso de gripa estacional</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
+                                                <td>17-12-2019</td>
                                             </tr>
                                             <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
+                                                <td>17-12-2019</td>
+                                                <td>Bronquitis aguda</td>
+                                                <td>Debido a factores hereditarios</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
+                                                <td>17-12-2019</td>
                                             </tr>
                                             <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
+                                                <td>17-12-2019</td>
+                                                <td>Asma</td>
+                                                <td>Empezó desde temprana edad</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
+                                                <td>17-12-2019</td>
                                             </tr>
                                             <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
+                                                <td>17-12-2019</td>
+                                                <td>Cáncer de páncreas</td>
+                                                <td>Detectado el 17-08-19</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
+                                                <td>17-12-2019</td>
                                             </tr>
                                             <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
+                                                <td>17-12-2019</td>
+                                                <td>Esclerosis múltiple</td>
+                                                <td>Contaba con antecedentes familiares</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
+                                                <td>17-12-2019</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -203,8 +218,89 @@
                             </div>
                         </div>
             </div>
+
+                <div class="row">
+                        <div class="col-md-12">
+
+                            <a target="_blank" class="btn btn-rose pull-right" onclick="window.location.href = 'EditarHC.html';">
+                                    <i class="material-icons">add</i> Nuevo caso de cirugía
+                                </a>
+
+                                
+
+                                
+
+                            <div class="card">
+                                <div class="card-header" data-background-color="red">
+                                    <h4 class="title">Cirugías</h4>
+                                    <p class="category">Casos de cirugía realizados dado el diagnóstico</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-info">
+                                            <th>Fecha</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Terminado</th>
+                                            <th>Fecha Fin</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr onclick="window.location.href = 'TablasCGyC.html';">
+                                                <td>17-12-2019</td>
+                                                <td>Diabetes tipo 2</td>
+                                                <td>Se presento dadas las actividades del individuo</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
+                                                <td>17-12-2019</td>
+                                            </tr>
+                                            <tr>
+                                                <td>17-12-2019</td>
+                                                <td>Neumonía</td>
+                                                <td>Empezó como un caso de gripa estacional</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
+                                                <td>17-12-2019</td>
+                                            </tr>
+                                            <tr>
+                                                <td>17-12-2019</td>
+                                                <td>Bronquitis aguda</td>
+                                                <td>Debido a factores hereditarios</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
+                                                <td>17-12-2019</td>
+                                            </tr>
+                                            <tr>
+                                                <td>17-12-2019</td>
+                                                <td>Asma</td>
+                                                <td>Empezó desde temprana edad</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
+                                                <td>17-12-2019</td>
+                                            </tr>
+                                            <tr>
+                                                <td>17-12-2019</td>
+                                                <td>Cáncer de páncreas</td>
+                                                <td>Detectado el 17-08-19</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
+                                                <td>17-12-2019</td>
+                                            </tr>
+                                            <tr>
+                                                <td>17-12-2019</td>
+                                                <td>Esclerosis múltiple</td>
+                                                <td>Contaba con antecedentes familiares</td>
+                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
+                                                <td>17-12-2019</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+
+
             </div>
             </div>
+
+
+            
+
         </div>
     </div>
 </body>
