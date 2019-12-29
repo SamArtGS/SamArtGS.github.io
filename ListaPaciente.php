@@ -1,3 +1,14 @@
+<?php
+    header('Content-Type: text/html; charset=UTF-8');
+    session_start();
+    //Si existe la sesión "cliente"..., la guardamos en una variable.
+    if (!isset($_SESSION['medico'])){
+        header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
+        die();
+      }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +50,7 @@
                     <div class="collapse navbar-collapse" id="navigation-example-2">
                         <ul class="nav navbar-nav navbar-right">
                               <li>
-                                  <a href="ListaPaciente.html">
+                                  <a href="ListaPaciente.php">
                                     <i class="material-icons text-gray">table_chart</i>
                                       Tabla general
                                   </a>
@@ -59,7 +70,8 @@
                                   </a>
                                   <ul class="dropdown-menu">
                                       <li class="dropdown-header">
-                                          Médico
+                                          <?php echo $_SESSION['medico'];
+                                          ?>
                                       </li>
                                       <li>
                                           <a href="#pablo">Datos médicos</a>
@@ -72,7 +84,7 @@
                                       <li class="divider"></li>
                                       <li>
                                         
-                                        <a href="index.html">Cerrar Sesión</a></li>
+                                        <a href="cerrarSesion.php">Cerrar Sesión</a></li>
                                   </ul>
                               </li>
                          </ul>
@@ -120,7 +132,7 @@
   <button class="btn btn-danger" align="center" onclick=""> <i class="material-icons">delete</i> Borrar</button>
   
   <button class="btn btn-warning" align="center"> <i class="material-icons">bar_chart</i>  Reportes</button>
-  <button class="btn btn-info" align="center" > <i class="material-icons">person_add</i>Nuevo</button>
+  <button class="btn btn-info" align="center" onclick="window.location.href='IngresarUsuario.php'"> <i class="material-icons">person_add</i>Nuevo</button>
   <button class="btn btn-success" align="center"> <i class="material-icons">search</i>  Buscar</button>
 
 </div>
@@ -135,131 +147,19 @@
                       <th>Teléfono</th>
                     </thead>
                     <tbody >
-                      <tr onclick="window.location.href = 'dashboard.html';">
-                        <td>1</td>
-                        <td>Samuel Arturo</td>
-                        <td>Garrido</td>
-                        <td>Sánchez</td>
-                        <td>9141203710</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
+                      
+                        <?php
+                            $mysqli = new mysqli("127.0.0.1", "root", "", "mydb", 3306);
+                            $query = "SELECT idPaciente, Nombre, ApellidoPat, ApellidoMat, telefono FROM paciente;";
+ 
+                            $result = mysqli_query($mysqli, $query); 
+                            while($row = mysqli_fetch_array($result)){ 
+                              printf("<tr> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> </tr>", $row["idPaciente"],$row["Nombre"],$row["ApellidoPat"],$row["ApellidoMat"],$row["telefono"]);
+                            }
 
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>Jorge</td>
-                        <td>Cárdenas</td>
-                        <td>Cárdenas</td>
-                        <td>7731231232</td>
-                      </tr>
+                            ?>
+                      
+                      
 
 
                     </tbody>
