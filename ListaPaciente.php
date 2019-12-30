@@ -63,7 +63,7 @@
                               </li>
                              
                               <li class="dropdown">
-                                  <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons text-gray">face</i>
                                           Perfil
                                       
@@ -149,19 +149,35 @@
                     <tbody >
                       
                         <?php
-                            $mysqli = new mysqli("127.0.0.1", "root", "", "mydb", 3306);
-                            $query = "SELECT idPaciente, Nombre, ApellidoPat, ApellidoMat, telefono FROM paciente;";
- 
-                            $result = mysqli_query($mysqli, $query); 
-                            while($row = mysqli_fetch_array($result)){ 
-                              printf("<tr> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> </tr>", $row["idPaciente"],$row["Nombre"],$row["ApellidoPat"],$row["ApellidoMat"],$row["telefono"]);
+                            $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+                            if (!$enlace) {
+                                    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                                    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                                    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                                    exit;
                             }
+                            
+                            $query = "SELECT idPACIENTE, Nombre, ApellidoPat, ApellidoMat, Telefono FROM PACIENTE;";
+ 
+                            $result = mysqli_query($enlace, $query);
+                             
+                            
+                            
 
-                            ?>
-                      
-                      
-
-
+                            while($row = mysqli_fetch_array($result)){ ?>
+                              <form action="AbrirCarpetaPac.php" method="post">
+                              <tr onclick="window.location.href='dashboard.php'" >
+                                <td><?php echo $row['idPACIENTE']; ?></td>
+                                <td><?php echo $row['Nombre']; ?></td>
+                                <td><?php echo $row['ApellidoPat']; ?></td>
+                                <td><?php echo $row['ApellidoMat']; ?></td>
+                                <td><?php echo $row['Telefono']; ?></td>
+    
+                              </tr>
+                              <?php
+                                }?>
+                              </form>
                     </tbody>
                   </table>
                 </div>
@@ -171,6 +187,10 @@
 
             
 </body>
+<script type="text/javascript">
+  var tableCells = document.querySelectorAll("td[celda]");
+  window.onclick
+</script>
 <script src="assets/js/jquery.min.js" type="text/javascript"></script>
   <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="assets/js/material.min.js"></script>
