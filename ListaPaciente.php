@@ -6,7 +6,6 @@
         header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
         die();
       }
-    
 ?>
 
 

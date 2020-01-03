@@ -1,9 +1,6 @@
 <?php
     
-function phpAlert($msg) {
-    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
-}
-    
+ 
 header('Content-Type: text/html; charset=UTF-8');
 session_start();
 //Si existe la sesión "cliente"..., la guardamos en una variable.
@@ -35,14 +32,14 @@ $antgino     = $_POST['antgino'];
 $antter     = $_POST['antter'];
 
 
-$sql = "UPDATE ANTECEDENTES SET AntHeredofam='$antheredo',AntPNPatolog='$antpnpat',AntPPatol='$antppat',AntGinobs='$antgino',AntTerap='$antter' WHERE PACIENTE_idPACIENTE=$id;";
+$sql = "INSERT INTO ANTECEDENTES(PACIENTE_idPACIENTE,AntHeredofam,AntPNPatolog,AntPPatol,AntGinobs,AntTerap) VALUES ($id,'$antheredo','$antpnpat','$antppat','$antgino','$antter') ON DUPLICATE KEY UPDATE AntHeredofam='$antheredo',AntPNPatolog='$antpnpat',AntPPatol='$antppat',AntGinobs='$antgino',AntTerap='$antter'";
 
 if(mysqli_query($enlace, $sql)){
-	phpAlert("Datos modificados correctamente");
+
 	header("Location: HistoriaClinica.php?id=$id");
   die();
 }else{
-	phpAlert("Error al modificar datos del paciente");
+	
 	header("Location: HistoriaClinica.php?id=$id");
 }
 ?>

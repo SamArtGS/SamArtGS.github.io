@@ -197,52 +197,31 @@
                                             <th>Fecha</th>
                                             <th>Nombre</th>
                                             <th>Descripción</th>
-                                            <th>Terminado</th>
+                                            
                                             <th>Fecha Fin</th>
                                         </thead>
                                         <tbody>
-                                            <tr onclick="window.location.href = 'TablasCGyC.php';">
-                                                <td>17-12-2019</td>
-                                                <td>Diabetes tipo 2</td>
-                                                <td>Se presento dadas las actividades del individuo</td>
-                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
-                                                <td>17-12-2019</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>Neumonía</td>
-                                                <td>Empezó como un caso de gripa estacional</td>
-                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
-                                                <td>17-12-2019</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>Bronquitis aguda</td>
-                                                <td>Debido a factores hereditarios</td>
-                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
-                                                <td>17-12-2019</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>Asma</td>
-                                                <td>Empezó desde temprana edad</td>
-                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes" checked></label></div></td>
-                                                <td>17-12-2019</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>Cáncer de páncreas</td>
-                                                <td>Detectado el 17-08-19</td>
-                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
-                                                <td>17-12-2019</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>Esclerosis múltiple</td>
-                                                <td>Contaba con antecedentes familiares</td>
-                                                <td><div class="checkbox"><label><input type="checkbox" name="optionsCheckboxes"></label></div></td>
-                                                <td>17-12-2019</td>
-                                            </tr>
+                                            <?php
+                            
+                            $query = "SELECT PACIENTE.Nombre,DIAGNOSTICO.idDIAGNOSTICO,DIAGNOSTICO.Nombre,DIAGNOSTICO.FechaInicio,DIAGNOSTICO.Descripcion,DIAGNOSTICO.FechaFin FROM PACIENTEDIAGNOSTICO INNER JOIN DIAGNOSTICO ON DIAGNOSTICO.idDIAGNOSTICO=PACIENTEDIAGNOSTICO.DIAGNOSTICO_idDIAGNOSTICO INNER JOIN PACIENTE ON PACIENTE.idPACIENTE=PACIENTEDIAGNOSTICO.PACIENTE_idPACIENTE WHERE PACIENTE.idPACIENTE=$id;";
+ 
+                            $result = mysqli_query($enlace, $query);
+                            
+
+                            while($row = mysqli_fetch_array($result)){ ?>
+                              
+                              <tr class='clickable-row' data-href='TablasCGyC.php?id=<?php echo $id;?>&idDiagnostico=<?php echo $row['idDIAGNOSTICO'];?>'>
+                                
+                                <td><?php echo $row['FechaInicio']; ?></td>
+                                <td><?php echo $row['Nombre']; ?></td>
+                                <td><?php echo $row['Descripcion']; ?></td>
+                                
+                                <td><?php echo $row['FechaFin']; ?></td>
+    
+                              </tr>
+                              <?php
+                                }
+                                ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -279,6 +258,13 @@
         demo.initDashboardPageCharts();
 
     });
+</script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
 </script>
 
 </html>

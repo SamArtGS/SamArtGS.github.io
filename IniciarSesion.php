@@ -159,7 +159,7 @@
                   </span>
                   <div class="form-group label-floating">
                 <label class="control-label">Cédula Profesional</label>
-                <input type="number" name="usuario" type="submit" class="form-control">
+                <input type="number" name="usuario" type="submit" class="form-control" required>
               </div>
                 </div>
 
@@ -169,7 +169,7 @@
                   </span>
                   <div class="form-group label-floating">
                 <label class="control-label">Contraseña</label>
-                <input type="password" name="contrasena" type="submit" class="form-control">
+                <input type="password" name="contrasena" type="submit" class="form-control" required>
               </div>
                 </div>
 

@@ -1,5 +1,5 @@
 <?php
-    header('Content-Type: text/html; charset=UTF-8');
+    
     session_start();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
     if (!isset($_SESSION['medico'])){
