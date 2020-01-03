@@ -5341,7 +5341,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 
 .dropdownjs > ul > li .selected, .dropdownjs > ul > li:active, .dropdownjs > ul > li:focus, .dropdownjs > ul > li:hover {
     box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    background-color: #9c27b0;
+    background-color: #2537EE;
     color: #FFFFFF;
 }
 
@@ -5681,7 +5681,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 
 .select2 .select2-simple {
     border: 0;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#2537EE, #2537EE), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -5711,14 +5711,14 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 
 .select2.select2-container--open .select2-simple {
     outline: none;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#2537EE, #2537EE), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 100% 2px, 100% 1px;
     box-shadow: none;
     transition-duration: 0.3s;
 }
 
 .select2.select2-container--open .select2-simple .material-input:after {
-    background-color: #9c27b0;
+    background-color: #2537EE;
 }
 
 .select2-container--default.select2-container--disabled .select2-selection--multiple {
@@ -5762,7 +5762,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
     border: 0;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#2537EE, #2537EE), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -5777,14 +5777,14 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 
 .select2-container--default .select2-search--dropdown .select2-search__field:focus {
     outline: none;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#2537EE, #2537EE), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 100% 2px, 100% 1px;
     box-shadow: none;
     transition-duration: 0.3s;
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field:focus .material-input:after {
-    background-color: #9c27b0;
+    background-color: #2537EE;
 }
 
 .select2-container--default .select2-search--inline .select2-search__field {
@@ -5847,7 +5847,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
 
 .select2-container--default .select2-results__option--highlighted[aria-selected]:focus, .select2-container--default .select2-results__option--highlighted[aria-selected]:hover, .select2-container--default .select2-results__option--highlighted[aria-selected]:active {
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-    background-color: #9c27b0;
+    background-color: #2537EE;
     color: #FFFFFF;
 }
 
@@ -8344,7 +8344,7 @@ select.selectpicker {
 
 .select-with-transition {
     border: 0 !important;
-    background-image: linear-gradient(#2537EE, #2537EE), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#2537EE, #2537EE), linear-gradient(#D2D2D2, #D2D2D2) !important;
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);

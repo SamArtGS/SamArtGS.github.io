@@ -1,4 +1,30 @@
-<!DOCTYPE HML>
+<?php
+    header('Content-Type: text/html; charset=UTF-8');
+    session_start();
+    //Si existe la sesión "cliente"..., la guardamos en una variable.
+    if (!isset($_SESSION['medico'])){
+        header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
+        die();
+      }
+
+      if(!isset($_GET['id'])){
+        header('Location: ListaPaciente.php');
+        die();
+      }
+      $id = $_GET['id'];
+      $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+                        if (!$enlace) {
+                               echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                               echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                               echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                               exit;
+                        }
+                        
+?>
+
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -30,44 +56,53 @@
     -->
             <div class="logo">
                 <a class="simple-text">
-                    Samuel Garrido
+                    <a class="simple-text">
+                        <?php
+                            
+
+                            $query = "SELECT Nombre, ApellidoPat FROM PACIENTE WHERE idPACIENTE=$id";
+                            $result = mysqli_query($enlace, $query);
+                            $row = mysqli_fetch_array($result);
+                            echo $row['Nombre'] . " " .$row['ApellidoPat'];
+                            ?>
+                    </a>
                 </a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li>
-                        <a href="dashboard.html">
+                        <a href="dashboard.php?id=<?php echo $id; ?>">
                             <i class="material-icons">dashboard</i>
                             <p>Vista General</p>
                         </a>
                     </li>
-                    <li class="active">
-                        <a href="DatosPaciente.html">
+                    <li>
+                        <a href="DatosPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons">person</i>
                             <p>Datos personales</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="HistoriaClinica.html">
+                    <li class="active">
+                        <a href="HistoriaClinica.php?id=<?php echo $id; ?>">
                             <i class="material-icons">fingerprint</i>
                             <p>Historia Clínica</p>
                         </a>
                     </li>
                     <li>
-                        <a href="Diagnosticos.html">
+                        <a href="Diagnosticos.php?id=<?php echo $id; ?>">
                             <i class="material-icons">accessibility_new</i>
                             <p>Diagnósticos</p>
                         </a>
                     </li>
                     
                     <li>
-                        <a href="Archivos.html">
+                        <a href="Archivos.php?id=<?php echo $id; ?>">
                             <i class="material-icons">folder_shared</i>
                             <p>Archivos</p>
                         </a>
                     </li>
                     <li>
-                        <a href="CitasPaciente.html">
+                        <a href="CitasPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons text-gray">access_time</i>
                             <p>Citas programadas</p>
                         </a>
@@ -91,13 +126,13 @@
                     <div class="collapse navbar-collapse" id="navigation-example-2">
                         <ul class="nav navbar-nav navbar-right">
                               <li>
-                                  <a href="ListaPaciente.html">
+                                  <a href="ListaPaciente.php">
                                     <i class="material-icons text-gray">table_chart</i>
                                       Tabla general
                                   </a>
                               </li>
                               <li>
-                                  <a href="Calendario.html">
+                                  <a href="Calendario.php">
                                         <i class="material-icons text-gray">insert_invitation</i>
                                       Calendario
                                   </a>
@@ -124,7 +159,7 @@
                                       <li class="divider"></li>
                                       <li>
                                         
-                                        <a href="index.html">Cerrar Sesión</a></li>
+                                        <a href="index.php">Cerrar Sesión</a></li>
                                   </ul>
                               </li>
                          </ul>
@@ -139,24 +174,15 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-
                         <div class="col-md-12">
-                            
-                            
-                                <a target="_blank" class="btn btn-danger pull-right" onclick="window.location.href = 'DatosPaciente.html';">
-                                    <i class="material-icons">close</i> Descartar cambios
-                                </a>
-                             
 
-                                <a target="_blank" class="btn btn-success pull-right" onclick="window.location.href = 'DatosPaciente.html';">
-                                    <i class="material-icons">check</i> Salvar cambios
+                            <a class="btn btn-info pull-right"  href="EditarHC.php?id=<?php echo $id; ?>">
+                                    <i class="material-icons">create</i> Editar Perfil
                                 </a>
-                            
-
                             <div class="card">
-                                <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Edición de datos personales del paciente</h4>
-                                    <p class="category">Puedes editar únicamente las casillas señaladas. Para alterar datos sensibles por favor contacte al administrador</p>
+                                <div class="card-header" data-background-color="azul">
+                                    <h4 class="title">Historia Clínica</h4>
+                                    <p class="category">Datos relacionados a los antecedentes del paciente</p>
                                 </div>
                                 <div class="card-content">
                                      
@@ -166,93 +192,109 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Nombre</label>
-                                                    <h6>Samuel Arturo</h6>
+                                                    <h6><?php
+                                                        $query = "SELECT Nombre FROM PACIENTE WHERE idPACIENTE=$id";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Nombre'];
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Apellido Paterno</label>
-                                                    <h6>Garrido</h6>
+                                                    <h6><?php
+                                                        $query = "SELECT ApellidoPat FROM PACIENTE WHERE idPACIENTE=$id";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['ApellidoPat'];
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Apellido Materno</label>
-                                                    <h6>Del sagrado corazón de Jesús</h6>
+                                                    <h6><?php
+                                                        $query = "SELECT ApellidoMat FROM PACIENTE WHERE idPACIENTE=$id";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['ApellidoMat'];
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                         </div>
                                        <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Sexo</label>
-                                                    <h6>Hombre</h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Tipo Sangre</label>
-                                                    <h6>A+</h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Fecha de Nacimiento</label>
-                                                    <h6>7 MAYO 1999</h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Teléfono</label>
-                                                    <input type="number" class="form-control">
+                                                    <label class="control-label" style="font-size: 12px !important">Antecedentes Heredofamiliares</label>
+                                                    <h6>   
+                                                        <?php
+                                                            $query = "SELECT AntHeredofam FROM ANTECEDENTES WHERE PACIENTE_idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['AntHeredofam'];
+                                                        ?>
+                                                </h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Dirección</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="control-label" style="font-size: 12px !important">Antecedentes Personales No Patológicos</label>
+                                                    <h6>   
+                                                        <?php
+                                                            $query = "SELECT AntPNPatolog FROM ANTECEDENTES WHERE PACIENTE_idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['AntPNPatolog'];
+                                                        ?>
+                                                </h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Ciudad</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Estado</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Código Postal</label>
-                                                    <input type="number" class="form-control">
+                                                    <label class="control-label" style="font-size: 12px !important">Antecedentes Personales Patológicos</label>
+                                                    <h6>   
+                                                        <?php
+                                                            $query = "SELECT AntPPatol FROM ANTECEDENTES WHERE PACIENTE_idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['AntPPatol'];
+                                                        ?>
+                                                </h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Estado Civil</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="control-label" style="font-size: 12px !important">Antecedentes Ginecoobstetricos</label>
+                                                    <h6>   
+                                                        <?php
+                                                            $query = "SELECT AntGinobs FROM ANTECEDENTES WHERE PACIENTE_idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['AntGinobs'];
+                                                        ?>
+                                                </h6>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Religión</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Lugar de Nacimiento</label>
-                                                    <h6>Villahermosa, Tabasco</h6>
+                                                    <label class="control-label" style="font-size: 12px !important">Antecedentes terapéuticos</label>
+                                                    <h6>   
+                                                        <?php
+                                                            $query = "SELECT AntTerap FROM ANTECEDENTES WHERE PACIENTE_idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['AntTerap'];
+                                                        ?>
+                                                </h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -266,7 +308,7 @@
                     </div>
                 </div>
             </div>
-           
+            
         </div>
     </div>
 </body>

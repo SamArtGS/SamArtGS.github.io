@@ -1,3 +1,30 @@
+<?php
+    header('Content-Type: text/html; charset=UTF-8');
+    session_start();
+    //Si existe la sesión "cliente"..., la guardamos en una variable.
+    if (!isset($_SESSION['medico'])){
+        header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
+        die();
+      }
+
+      if(!isset($_GET['id'])){
+        header('Location: ListaPaciente.php');
+        die();
+      }
+      $id = $_GET['id'];
+      $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+                        if (!$enlace) {
+                               echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                               echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                               echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                               exit;
+                        }
+                        
+                        
+?>
+
+
 <!DOCTYPE HML>
 <html lang="en">
 
@@ -30,44 +57,53 @@
     -->
             <div class="logo">
                 <a class="simple-text">
-                    Samuel Garrido
+                    <a class="simple-text">
+                        <?php
+                            
+
+                            $query = "SELECT Nombre, ApellidoPat FROM PACIENTE WHERE idPACIENTE=$id";
+                            $result = mysqli_query($enlace, $query);
+                            $row = mysqli_fetch_array($result);
+                            echo $row['Nombre'] . " " .$row['ApellidoPat'];
+                            ?>
+                    </a>
                 </a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li>
-                        <a href="dashboard.html">
+                        <a href="dashboard.php?id=<?php echo $id; ?>">
                             <i class="material-icons">dashboard</i>
                             <p>Vista General</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="DatosPaciente.html">
+                        <a href="DatosPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons">person</i>
                             <p>Datos personales</p>
                         </a>
                     </li>
                     <li>
-                        <a href="HistoriaClinica.html">
+                        <a href="HistoriaClinica.php?id=<?php echo $id; ?>">
                             <i class="material-icons">fingerprint</i>
                             <p>Historia Clínica</p>
                         </a>
                     </li>
                     <li>
-                        <a href="Diagnosticos.html">
+                        <a href="Diagnosticos.php?id=<?php echo $id; ?>">
                             <i class="material-icons">accessibility_new</i>
                             <p>Diagnósticos</p>
                         </a>
                     </li>
                     <li>
-                        <a href="Archivos.html">
+                        <a href="Archivos.php?id=<?php echo $id; ?>">
                             <i class="material-icons">folder_shared</i>
                             <p>Archivos</p>
                         </a>
                     </li>
                     
                     <li>
-                        <a href="CitasPaciente.html">
+                        <a href="CitasPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons text-gray">access_time</i>
                             <p>Citas programadas</p>
                         </a>
@@ -91,13 +127,13 @@
                     <div class="collapse navbar-collapse" id="navigation-example-2">
                         <ul class="nav navbar-nav navbar-right">
                               <li>
-                                  <a href="ListaPaciente.html">
+                                  <a href="ListaPaciente.php">
                                     <i class="material-icons text-gray">table_chart</i>
                                       Tabla general
                                   </a>
                               </li>
                               <li>
-                                  <a href="Calendario.html">
+                                  <a href="Calendario.php">
                                         <i class="material-icons text-gray">insert_invitation</i>
                                       Calendario
                                   </a>
@@ -124,7 +160,7 @@
                                       <li class="divider"></li>
                                       <li>
                                         
-                                        <a href="index.html">Cerrar Sesión</a></li>
+                                        <a href="index.php">Cerrar Sesión</a></li>
                                   </ul>
                               </li>
                          </ul>
@@ -143,7 +179,7 @@
                         <div class="col-md-12">
                             
                             
-                                <a target="_blank" class="btn btn-info pull-right" onclick="window.location.href = 'EditarDP.html';">
+                                <a class="btn btn-info pull-right"  href="EditarDP.php?id=<?php echo $id; ?>">
                                     <i class="material-icons">create</i> Editar Perfil
                                 </a>
                            
@@ -161,25 +197,57 @@
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Nombre</label>
-                                                    <h6>Samuel Arturo</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT Nombre FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['Nombre'];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Apellido Paterno</label>
-                                                    <h6>Garrido</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT ApellidoPat FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['ApellidoPat'];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Apellido Materno</label>
-                                                    <h6>Del sagrado corazón de Jesús</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT ApellidoMat FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['ApellidoMat'];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Edad</label>
-                                                    <h6>20</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT FechaNacimiento FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            $_age = floor((time() - strtotime($row[0])) / 31556926);
+                                                            echo $_age;
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,26 +255,67 @@
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Sexo</label>
-                                                    <h6>Hombre</h6>
+                                                    <h6>
+
+                                                        <?php
+                                                            $query = "SELECT Sexo FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Tipo Sangre</label>
-                                                    <h6>A+</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT TipoSangre FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Fecha de Nacimiento</label>
-                                                    <h6>7 Mayo 1999</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT FechaNacimiento FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Teléfono</label>
-                                                    <h6>9141203710</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT Telefono FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -214,7 +323,17 @@
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Dirección</label>
-                                                    <h6>Calle jalapa esquina nacajuca fraccionamiento cunduacán 2000 número 56 interior 5</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT Direccion FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -222,19 +341,50 @@
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Ciudad</label>
-                                                    <h6>Cunduacán</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT Ciudad FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Estado</label>
-                                                    <h6>Tabasco</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT Estado FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                            
+                                                        </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Código Postal</label>
-                                                    <h6>86690</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT CP FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -242,19 +392,49 @@
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Estado Civil</label>
-                                                    <h6>Soltero</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT EstadoCivil FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Religión</label>
-                                                    <h6>Católica</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT Religion FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Lugar de Nacimiento</label>
-                                                    <h6>Villahermosa, Tabasco</h6>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT LugarNacim FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -287,7 +467,6 @@
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="assets/js/material-dashboard.js"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->

@@ -6,6 +6,10 @@
         header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
         die();
       }
+
+     
+     
+                        
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +58,7 @@
                                   </a>
                               </li>
                               <li>
-                                  <a href="Calendario.html">
+                                  <a href="Calendario.php">
                                         <i class="material-icons text-gray">insert_invitation</i>
                                       Calendario
                                   </a>
@@ -145,22 +149,22 @@
                                             </div>
                                             </div>
                                               <div class="col-lg-2 col-sm-4 " style="padding-top: 50px"  align="center">
-                                              <select class="selectpicker" data-style="select-with-transition" multiple title="Tipo de sangre" data-size="8" name="tiposangre">
-                                                <option value="1">A+</option>
-                                                <option value="2">A-</option>
-                                                <option value="3">B+</option>
-                                                <option value="4">B-</option>
-                                                <option value="5">O+</option>
-                                                <option value="6">O-</option>
-                                                <option value="7">AB+</option>
-                                                <option value="8">AB-</option>
+                                              <select class="selectpicker form-control" data-style="select-with-transition" multiple title="Tipo de sangre" data-size="8" name="tiposangre">
+                                                <option value="A+">A+</option>
+                                                <option value="A-">A-</option>
+                                                <option value="B+">B+</option>
+                                                <option value="B-">B-</option>
+                                                <option value="O+">O+</option>
+                                                <option value="O-">O-</option>
+                                                <option value="AB+">AB+</option>
+                                                <option value="AB-">AB-</option>
                                               </select>
                                               </div>
                                             
                                                 <div class="col-lg-2 col-sm-4 " style="padding-top: 50px"  align="center">
-                                              <select class="selectpicker" data-style="select-with-transition" multiple title="Sexo" data-size="3" name="sexo">
-                                                <option value="1">Masculino</option>
-                                                <option value="2">Femenino</option>
+                                              <select class="selectpicker form-control" data-style="select-with-transition" multiple title="Sexo" data-size="3" name="sexo">
+                                                <option value="Hombre">Hombre</option>
+                                                <option value="Mujer">Mujer</option>
                                                 
                                               </select>
                                               </div>
@@ -215,7 +219,7 @@
                                             </div>
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-success pull-right" onclick="">Guardar datos</button>
+                                        <button type="submit" class="btn btn-success pull-right">Guardar datos</button>
                                     </form>
                                     <button class="btn btn-danger pull-right" onclick="window.location.href='ListaPaciente.php'">Descartar datos</button>
                                 </div>

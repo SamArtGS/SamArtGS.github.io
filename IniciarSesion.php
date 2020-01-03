@@ -183,7 +183,7 @@
                 </div> -->
               </div>
               <div class="footer text-center">
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                <button type="submit" class="btn btn-info">Entrar</button>
               </div>
             </form>
           </div>

@@ -17,8 +17,13 @@ $telefono     = $_POST['telefono'];
 
 
 $fechaNac     = $_POST['fechanacimiento'];
-// $sangre       = $_POST['tiposangre'];
-// $sexo         = $_POST['sexo'];
+if(isset($_POST['tiposangre']) ){
+    $sangre=$_POST['tiposangre'];
+}
+if(isset($_POST['sexo']) ){
+    $sangre=$_POST['sexo'];
+    
+}
 
 $direccion    = $_POST['direccion'];
 $ciudad       = $_POST['ciudad'];
@@ -28,7 +33,7 @@ $EdoCivil     = $_POST['EstadoCivil'];
 $religion      = $_POST['religion'];
 $lugarnacimiento  = $_POST['lugarnacimiento'];
 
-$sql = "INSERT INTO PACIENTE(Nombre,ApellidoPat,ApellidoMat,Direccion,Ciudad,Estado,CP,Telefono,EstadoCivil,Religion,LugarNacim) VALUES ('$nombres','$apellidoPat','$apellidoMat','$direccion','$ciudad','$estado','$cp','$telefono','$EdoCivil','$religion','$lugarnacimiento');";
+$sql = "INSERT INTO PACIENTE(Nombre,ApellidoPat,ApellidoMat,Direccion,Ciudad,Estado,CP,Telefono,EstadoCivil,Religion,LugarNacim,TipoSangre) VALUES ('$nombres','$apellidoPat','$apellidoMat','$direccion','$ciudad','$estado','$cp','$telefono','$EdoCivil','$religion','$lugarnacimiento','$sangre');";
 
 if(mysqli_query($enlace, $sql)){
 	phpAlert("Paciente correctamente agregado");
@@ -38,6 +43,7 @@ if(mysqli_query($enlace, $sql)){
 	header("Location: ListaPaciente.php");
 }
 
+    
 function phpAlert($msg) {
     echo '<script type="text/javascript">alert("' . $msg . '")</script>';
 }

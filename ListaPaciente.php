@@ -6,6 +6,7 @@
         header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
         die();
       }
+    
 ?>
 
 
@@ -129,7 +130,7 @@
                 </div>
   
 
-  <button class="btn btn-danger" align="center" onclick=""> <i class="material-icons">delete</i> Borrar</button>
+  <button class="btn btn-danger" align="center" onclick=""> <i class="material-icons">delete</i> Limpiar</button>
   
   <button class="btn btn-warning" align="center"> <i class="material-icons">bar_chart</i>  Reportes</button>
   <button class="btn btn-info" align="center" onclick="window.location.href='IngresarUsuario.php'"> <i class="material-icons">person_add</i>Nuevo</button>
@@ -166,8 +167,9 @@
                             
 
                             while($row = mysqli_fetch_array($result)){ ?>
-                              <form action="AbrirCarpetaPac.php" method="post">
-                              <tr onclick="window.location.href='dashboard.php'" >
+                              
+                              <tr class='clickable-row' data-href='dashboard.php?id=<?php echo $row['idPACIENTE'];?>'>
+                                
                                 <td><?php echo $row['idPACIENTE']; ?></td>
                                 <td><?php echo $row['Nombre']; ?></td>
                                 <td><?php echo $row['ApellidoPat']; ?></td>
@@ -177,7 +179,7 @@
                               </tr>
                               <?php
                                 }?>
-                              </form>
+                              
                     </tbody>
                   </table>
                 </div>
@@ -254,6 +256,14 @@
 
     });
   </script>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
 
   <script type="text/javascript">
     $().ready(function(){
