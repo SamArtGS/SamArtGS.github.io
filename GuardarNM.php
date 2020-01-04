@@ -22,6 +22,12 @@ if (!$enlace) {
         exit;
 }
 
+date_default_timezone_set('America/Mexico_City');
+$time = time();
+
+$fechaHora = date("Y-m-d H:i:s", $time);
+
+$Descripcion = $_POST['descripcion'];
 $Temperatura = $_POST['Temperatura'];
 $TA1  = $_POST['TA1'];
 $TA2  = $_POST['TA2'];
@@ -36,21 +42,46 @@ $Talla    = $_POST['Talla'];
 $Padecimiento      = $_POST['Padecimiento'];
 $ExploFisica  = $_POST['ExploFisica'];
 $Tratamiento  = $_POST['Tratamiento'];
+
 $Plan  = $_POST['Plan'];
+$fecha = date("Y-m-d");
 
 
+if(!empty($fechaHora)){
+  $sqlCG = "INSERT INTO CONSULTAGENERAL(DIAGNOSTICO_idDIAGNOSTICO,MEDICO_CedProf,Descripcion,FechaHora) VALUES ($idDiag,$ced,'$Descripcion','$fechaHora')";
 
-$sql = "INSERT INTO NOTA_MEDICA(Nombre,ApellidoPat,ApellidoMat,Direccion,Ciudad,Estado,CP,Telefono,EstadoCivil,Religion,LugarNacim,TipoSangre) VALUES ('$nombres','$apellidoPat','$apellidoMat','$direccion','$ciudad','$estado','$cp','$telefono','$EdoCivil','$religion','$lugarnacimiento','$sangre');";
+  if(mysqli_query($enlace, $sqlCG)){
+    $lastid = mysqli_insert_id($enlace);
 
-$sql = "INSERT INTO NOTA_MEDICA(Nombre,ApellidoPat,ApellidoMat,Direccion,Ciudad,Estado,CP,Telefono,EstadoCivil,Religion,LugarNacim,TipoSangre) VALUES ('$nombres','$apellidoPat','$apellidoMat','$direccion','$ciudad','$estado','$cp','$telefono','$EdoCivil','$religion','$lugarnacimiento','$sangre');";
+    $sqlazo = "INSERT INTO NOTA_MEDICA(Temperatura,TA,TA2,FC,FR,Oxiometria,Peso,Talla,Padecimiento,ExploFisica,Tratamiento,Plan,Fecha,CONSULTAGENERAL_idCONSULTAGENERAL,CONSULTAGENERAL_DIAGNOSTICO_idDIAGNOSTICO,CONSULTAGENERAL_MEDICO_CedProf) VALUES ($Temperatura,$TA1,$TA2,$FC,$FR,$OX,$Peso,$Talla,'$Padecimiento','$ExploFisica','$Tratamiento','$Plan','$fecha',$lastid,$idDiag,$ced);";
 
-if(mysqli_query($enlace, $sql)){
-	phpAlert("Paciente correctamente agregado");
-	header("Location: ListaPaciente.php");
+        if(mysqli_query($enlace, $sqlazo)){
+          header("Location: TablasCGyC.php?id=$id&idDiag=$idDiag");
+        }else{
+          phpAlert("Error al ingresar nueva nota médica");
+        }
+
+  }else{
+    phpAlert("Error al insertar consulta general");
+  }
+
 }else{
-	phpAlert("Error al ingresar al paciente");
-	header("Location: ListaPaciente.php");
+  phpAlert("Error al ingresar al paciente");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 function phpAlert($msg) {

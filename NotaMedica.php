@@ -186,6 +186,21 @@
                                 </div>
                                 <div class="card-content">
                                     <form action="GuardarNM.php?id=<?php echo $id; ?>&idDiag=<?php echo $idDiag;?>" method="post">
+
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="form-group label-floating">
+            <label class="control-label" style="font-size: 12px !important">Descripción corta de la Consulta General</label>
+            
+                    <input type="text" name="descripcion" class="form-control"  required>
+        </div>
+    </div>
+    
+    
+</div>
+
+
                                         <div class="row">
                                             <h5 align="center"> <b>Datos generales</b></h5>
                                         </div>

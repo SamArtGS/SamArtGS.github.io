@@ -102,7 +102,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="CitasPaciente.php">
+                        <a href="CitasPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons text-gray">access_time</i>
                             <p>Citas programadas</p>
                         </a>

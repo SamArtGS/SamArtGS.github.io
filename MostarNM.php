@@ -74,37 +74,37 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li>
-                        <a href="dashboard.php">
+                        <a href="dashboard.php?id=<?php echo $id; ?>">
                             <i class="material-icons">dashboard</i>
                             <p>Vista General</p>
                         </a>
                     </li>
                     <li>
-                        <a href="DatosPaciente.php">
+                        <a href="DatosPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons">person</i>
                             <p>Datos personales</p>
                         </a>
                     </li>
                     <li>
-                        <a href="HistoriaClinica.php">
+                        <a href="HistoriaClinica.php?id=<?php echo $id; ?>">
                             <i class="material-icons">fingerprint</i>
                             <p>Historia Clínica</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="Diagnosticos.php">
+                        <a href="Diagnosticos.php?id=<?php echo $id; ?>">
                             <i class="material-icons">accessibility_new</i>
                             <p>Diagnósticos</p>
                         </a>
                     </li>
                     <li>
-                        <a href="Archivos.php">
+                        <a href="Archivos.php?id=<?php echo $id; ?>">
                             <i class="material-icons">folder_shared</i>
                             <p>Archivos</p>
                         </a>
                     </li>
                     <li>
-                        <a href="CitasPaciente.php">
+                        <a href="CitasPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons text-gray">access_time</i>
                             <p>Citas programadas</p>
                         </a>
@@ -285,7 +285,7 @@
                                             <div>
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Temp (ºC)</label>
+                                                    <label class="control-label">Temp</label>
                                                     <h6><?php
                                                         $query = "SELECT Temperatura FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
                                                         $result = mysqli_query($enlace, $query);
@@ -312,7 +312,7 @@
                                                         $query = "SELECT FC FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
                                                         $result = mysqli_query($enlace, $query);
                                                         $row = mysqli_fetch_array($result);
-                                                        echo $row['FC'] . " ppm";
+                                                        echo $row['FC'];
                                                     ?></h6>
                                                 </div>
                                             </div>
@@ -323,7 +323,7 @@
                                                         $query = "SELECT FR FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
                                                         $result = mysqli_query($enlace, $query);
                                                         $row = mysqli_fetch_array($result);
-                                                        echo $row['FR'] . " rpm";
+                                                        echo $row['FR'];
                                                     ?></h6>
                                                 </div>
                                             </div>
@@ -340,12 +340,12 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Peso (kg) </label>
+                                                    <label class="control-label">Peso</label>
                                                     <h6><?php
                                                         $query = "SELECT Peso FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
                                                         $result = mysqli_query($enlace, $query);
                                                         $row = mysqli_fetch_array($result);
-                                                        echo $row['Peso'] . " kg";
+                                                        echo $row['Peso'] . " KG";
                                                     ?></h6>
                                                 </div>
                                             </div>
