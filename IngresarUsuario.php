@@ -149,7 +149,7 @@
                                             </div>
                                             </div>
                                               <div class="col-lg-2 col-sm-4 " style="padding-top: 50px"  align="center">
-                                              <select class="selectpicker form-control" data-style="select-with-transition" multiple title="Tipo de sangre" data-size="8" name="tiposangre">
+                                              <select class="selectpicker form-control" data-style="select-with-transition"  title="Tipo de sangre" data-size="8" name="tiposangre">
                                                 <option value="A+">A+</option>
                                                 <option value="A-">A-</option>
                                                 <option value="B+">B+</option>
@@ -162,7 +162,7 @@
                                               </div>
                                             
                                                 <div class="col-lg-2 col-sm-4 " style="padding-top: 50px"  align="center">
-                                              <select class="selectpicker form-control" data-style="select-with-transition" multiple title="Sexo" data-size="3" name="sexo">
+                                              <select class="selectpicker form-control" data-style="select-with-transition"  title="Sexo" data-size="3" name="sexo">
                                                 <option value="Hombre">Hombre</option>
                                                 <option value="Mujer">Mujer</option>
                                                 

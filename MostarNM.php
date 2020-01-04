@@ -7,13 +7,14 @@
         die();
       }
 
-      if(!isset($_GET['id'])){
+      if(!isset($_GET['id'])||!isset($_GET['idDiag'])){
         header('Location: ListaPaciente.php');
         die();
       }
-      $ced = $_SESSION['medico'];
       $id = $_GET['id'];
       $idDiag = $_GET['idDiag'];
+      $idNM = $_GET['idNM'];
+    
       $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
 
                         if (!$enlace) {
@@ -25,7 +26,6 @@
                         
                         
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -74,37 +74,37 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li>
-                        <a href="dashboard.php?id=<?php echo $id; ?>">
+                        <a href="dashboard.php">
                             <i class="material-icons">dashboard</i>
                             <p>Vista General</p>
                         </a>
                     </li>
                     <li>
-                        <a href="DatosPaciente.php?id=<?php echo $id; ?>">
+                        <a href="DatosPaciente.php">
                             <i class="material-icons">person</i>
                             <p>Datos personales</p>
                         </a>
                     </li>
                     <li>
-                        <a href="HistoriaClinica.php?id=<?php echo $id; ?>">
+                        <a href="HistoriaClinica.php">
                             <i class="material-icons">fingerprint</i>
                             <p>Historia Clínica</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="Diagnosticos.php?id=<?php echo $id; ?>">
+                        <a href="Diagnosticos.php">
                             <i class="material-icons">accessibility_new</i>
                             <p>Diagnósticos</p>
                         </a>
                     </li>
                     <li>
-                        <a href="Archivos.php?id=<?php echo $id; ?>">
+                        <a href="Archivos.php">
                             <i class="material-icons">folder_shared</i>
                             <p>Archivos</p>
                         </a>
                     </li>
                     <li>
-                        <a href="CitasPaciente.php?id=<?php echo $id; ?>">
+                        <a href="CitasPaciente.php">
                             <i class="material-icons text-gray">access_time</i>
                             <p>Citas programadas</p>
                         </a>
@@ -178,14 +178,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header" data-background-color="green">
+                                <div class="card-header" data-background-color="azul">
                                     <i class="material-icons pull-right" style="font-size: 54px;">emoji_people</i>
-                                    <h4 class="title">Nueva Nota Médica - Consulta General</h4>
+                                    <h4 class="title">Nota Médica</h4>
                                     
-                                    <p class="category">Inserte los datos requeridos por favor</p>
+                                    <p class="category">Visualice los datos de la nota médica para tener mejores criterios</p>
                                 </div>
                                 <div class="card-content">
-                                    <form action="GuardarNM.php?id=<?php echo $id; ?>&idDiag=<?php echo $idDiag;?>" method="post">
+                                   
                                         <div class="row">
                                             <h5 align="center"> <b>Datos generales</b></h5>
                                         </div>
@@ -193,7 +193,10 @@
                                             <div class="col-md-2">
                                                 <label class="control-label" style="font-size: 12px !important">Fecha</label>
                                                     <h6><?php
-                                                        echo date("Y-m-d");
+                                                        $query = "SELECT Fecha FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Fecha'];
                                                     ?>
                                             </h6>
                                             </div>
@@ -212,22 +215,22 @@
                                             <div class="col-md-3">
                                                 <label class="control-label" style="font-size: 12px !important">Cédula Profesional Médico</label>
                                                     <h6><?php
-                                                        $query = "SELECT CedProf FROM MEDICO WHERE CedProf=$ced;";
+                                                        $query = "SELECT NOTA_MEDICA.CONSULTAGENERAL_MEDICO_CedProf FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
                                                         $result = mysqli_query($enlace, $query);
                                                         $row = mysqli_fetch_array($result);
-                                                        echo $row['CedProf'];
+                                                        echo $row['CONSULTAGENERAL_MEDICO_CedProf'];
                                                     ?></h6>
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="control-label" style="font-size: 12px !important">Médico</label>
                                                     <h6><?php
-                                                        $query = "SELECT Nombre,ApellidoPat,ApellidoMat FROM MEDICO WHERE CedProf=$ced;";
+                                                        $query = "SELECT MEDICO.Nombre,MEDICO.ApellidoPat,MEDICO.ApellidoMat FROM MEDICO INNER JOIN NOTA_MEDICA ON NOTA_MEDICA.CONSULTAGENERAL_MEDICO_CedProf=MEDICO.CedProf WHERE idNOTA_MEDICA=$idNM;";
                                                         $result = mysqli_query($enlace, $query);
                                                         $row = mysqli_fetch_array($result);
                                                         echo $row['Nombre'] . " " . $row['ApellidoPat'] . " " . $row['ApellidoMat'];
                                                     ?></h6>
                                             </div>
-                                        </div>         
+                                        </div>          
 
 
                                         <div class="row">
@@ -275,53 +278,86 @@
                                                         ?></h6>
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <h5 align="center"> <b>Signos vitales</b></h5>
                                         </div>
                                     <div class="row">
                                             <div>
                                             <div class="col-md-2">
-                                                <div class="form-group label-floating" required>
+                                                <div class="form-group label-floating">
                                                     <label class="control-label">Temp (ºC)</label>
-                                                    <input type="number" step="0.1" class="form-control" name="Temperatura" required> ºC
+                                                    <h6><?php
+                                                        $query = "SELECT Temperatura FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Temperatura']. " ºC";
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">TA</label>
-                                                    <input type="number" class="form-control" name="TA1" required> <h6 align="center">/</h3>
-                                                    <input type="number" class="form-control" name="TA2" required>
+                                                    <h6><?php
+                                                        $query = "SELECT TA,TA2 FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['TA']. "/" .$row['TA2'];
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">FC</label>
-                                                    <input type="number" class="form-control" name="FC" required> 
+                                                    <h6><?php
+                                                        $query = "SELECT FC FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['FC'] . " ppm";
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">FR</label>
-                                                    <input type="number" class="form-control" name="FR" required>
+                                                    <h6><?php
+                                                        $query = "SELECT FR FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['FR'] . " rpm";
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Ox:</label>
-                                                    <input type="number" class="form-control" name="OX" required> %
+                                                    <h6><?php
+                                                        $query = "SELECT Oxiometria FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Oxiometria']. " %";
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Peso </label>
-                                                    <input type="number" step="0.001" class="form-control" name="Peso" required> KG
+                                                    <label class="control-label">Peso (kg) </label>
+                                                    <h6><?php
+                                                        $query = "SELECT Peso FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Peso'] . " kg";
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Talla</label>
-                                                    <input type="number" class="form-control" name="Talla" required>CM
+                                                    <h6><?php
+                                                        $query = "SELECT Talla FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Talla'] . " cm";
+                                                    ?></h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -337,7 +373,12 @@
                                                     
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Padecimiento</label>
-                                                        <textarea class="form-control" rows="6" name="Padecimiento" required></textarea>
+                                                        <h6><?php
+                                                        $query = "SELECT Padecimiento FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Padecimiento'];
+                                                    ?></h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -348,7 +389,12 @@
                                                     
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Exploración Física</label>
-                                                        <textarea class="form-control" rows="6" name="ExploFisica" required></textarea>
+                                                        <h6><?php
+                                                        $query = "SELECT ExploFisica FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['ExploFisica'];
+                                                    ?></h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -359,7 +405,12 @@
                                                     
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Tratamiento</label>
-                                                        <textarea class="form-control" rows="6" name="Tratamiento" required></textarea>
+                                                        <h6><?php
+                                                        $query = "SELECT Tratamiento FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Tratamiento'];
+                                                    ?></h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -370,13 +421,17 @@
                                                     
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Plan</label>
-                                                        <textarea class="form-control" rows="6" name="Plan" required></textarea>
+                                                        <h6><?php
+                                                        $query = "SELECT Plan FROM NOTA_MEDICA WHERE idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['Plan'];
+                                                    ?></h6>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            Todavía no toquen ésta parte 
                                             <h5 align="center"> <b>Archivos adjuntos *</b></h5>
                                         </div>
                                         <div class="row">
@@ -384,75 +439,59 @@
                                                 <div class="form-group">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Número de archivos adjuntos:</label>
-                                                        <input type="number" class="form-control" placeholder="                                                          3">
+                                                        <h6><?php
+                                                        $query = "SELECT COUNT(*) FROM ESTUDIO WHERE NOTA_MEDICA_idNOTA_MEDICA=$idNM;";
+                                                        $result = mysqli_query($enlace, $query);
+                                                        $row = mysqli_fetch_array($result);
+                                                        echo $row['COUNT(*)'];
+                                                        $CantidadArchivos = $row['COUNT(*)'];
+                                                    ?></h6>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row">
+                                            <?php
 
+                            $query = "SELECT * FROM ESTUDIO WHERE NOTA_MEDICA_idNOTA_MEDICA=$idNM;";
+
+                            $result = mysqli_query($enlace, $query);
+                            
+
+                            while($row = mysqli_fetch_array($result)){ ?>
                                             <div class="col-md-3">
                                             <div class="form-group">
-                                                <input type="file" id="inputFile2" multiple="">
                                                 <div class="input-group">
-                                                <input type="text" readonly="" class="form-control" placeholder="Añadir archivo">
+                                                <input type="text" readonly="" class="form-control" placeholder="<?php echo $row['NombreArchivo'];?>">
                                                     <span class="input-group-btn input-group-s">
-                                                        <button type="button" class="btn btn-just-icon btn-round btn-primary">
+                                                        <a target="_blank" type="button" class="btn btn-round btn-primary" href="view.php?file=<?php echo $row['idESTUDIO'];?>">
                                                                 <i class="material-icons">attach_file</i>
-                                                        </button>
+                                                        </a>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Tipo</label>
-                                                    <input type="text" class="form-control" placeholder="        Análisis de laboratorio de sangre">
+                                                    <?php echo $row['Tipo'];?>
                                                 </div>
-                                        </div>
+                                            </div>
+                              
+                              <?php
+                                }
+                                ?>
+                                            
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="file" id="inputFile2" multiple="">
-                                                <div class="input-group">
-                                                <input type="text" readonly="" class="form-control" placeholder="Añadir archivo">
-                                                    <span class="input-group-btn input-group-s">
-                                                        <button type="button" class="btn btn-just-icon btn-round btn-primary">
-                                                                <i class="material-icons">attach_file</i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Tipo</label>
-                                                    <input type="text" class="form-control" placeholder="         Radiografía de fémur">
-                                                </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="file" id="inputFile2" multiple="">
-                                                <div class="input-group">
-                                                <input type="text" readonly="" class="form-control" placeholder="Añadir archivo">
-                                                    <span class="input-group-btn input-group-s">
-                                                        <button type="button" class="btn btn-just-icon btn-round btn-primary">
-                                                                <i class="material-icons">attach_file</i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Tipo</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                        </div>
+                                            
                                         </div>
                                          <div class="row">
                                             <div class="col-md-6">
                                             <p>*Archivos tales como análisis de laboratorio, radiografías, cultivos, etc. <b>PDF</b></p>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-success pull-right">Guardar nota médica</button>
+                                        
                                         <div class="clearfix"></div>
-                                    </form>
+                                
                                 </div>
                             </div>
                         </div>

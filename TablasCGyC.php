@@ -12,6 +12,7 @@
         die();
       }
       $id = $_GET['id'];
+      $idDiag = $_GET['idDiag'];
       $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
 
                         if (!$enlace) {
@@ -175,20 +176,25 @@
                 <div class="container-fluid">
                     <div class="row" style="padding-left: 40px">
                         
-                        <h3>  <b>Diagnóstico:</b> Diabetes tipo 2</h3>
+                        <h3>  <b>Diagnóstico:</b> 
+                                <?php
+                            
+
+                            $query = "SELECT Nombre FROM DIAGNOSTICO WHERE idDIAGNOSTICO=$idDiag";
+                            $result = mysqli_query($enlace, $query);
+                            $row = mysqli_fetch_array($result);
+                            echo $row['Nombre'];
+                            ?>
+                        </h3>
                     </div>
 
 
                     <div class="row">
                         <div class="col-md-12">
 
-                            <a target="_blank" class="btn btn-primary pull-right" onclick="window.location.href = 'NotaMedica.php';">
+                            <a class="btn btn-primary pull-right" href='NotaMedica.php?id=<?php echo $id?>&idDiag=<?php echo $idDiag?>'>
                                     <i class="material-icons">add</i> Nueva nota médica
                                 </a>
-
-                               
-
-                                
 
                             <div class="card">
                                 <div class="card-header" data-background-color="orange">
@@ -198,68 +204,36 @@
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-info">
-                                            <th>Fecha</th>
-                                            <th>Hora</th>
+                                            <th>Fecha Hora</th>                                            
                                             <th>Descripción</th>
-                                            <th>TA</th>
                                             <th>FC</th>
                                             <th>FR</th>
+                                            <th>Peso</th>
                                             <th>Médico</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>14:56</td>
-                                                <td>Paciente llegó con dolor de muelas estacional</td>
-                                                <td>100/60</td>
-                                                <td>85</td>
-                                                <td>16</td>
-                                                <td>Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>14:56</td>
-                                                <td>Paciente llegó con dolor de muelas estacional</td>
-                                                <td>100/60</td>
-                                                <td>85</td>
-                                                <td>16</td>
-                                                <td>Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>14:56</td>
-                                                <td>Paciente llegó con dolor de muelas estacional</td>
-                                                <td>100/60</td>
-                                                <td>85</td>
-                                                <td>16</td>
-                                                <td>Nerio Gallegos</td>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>14:56</td>
-                                                <td>Paciente llegó con dolor de muelas estacional</td>
-                                                <td>100/60</td>
-                                                <td>85</td>
-                                                <td>16</td>
-                                                <td>Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>14:56</td>
-                                                <td>Paciente llegó con dolor de muelas estacional</td>
-                                                <td>100/60</td>
-                                                <td>85</td>
-                                                <td>16</td>
-                                                <td>Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>14:56</td>
-                                                <td>Paciente llegó con dolor de muelas estacional</td>
-                                                <td>100/60</td>
-                                                <td>85</td>
-                                                <td>16</td>
-                                                <td>Nerio Gallegos</td>
-                                            </tr>
+                                            <?php
+
+                            $query = "SELECT NOTA_MEDICA.idNOTA_MEDICA,CONSULTAGENERAL.FechaHora,CONSULTAGENERAL.Descripcion,NOTA_MEDICA.FC,NOTA_MEDICA.FR,NOTA_MEDICA.Peso,MEDICO.Nombre,MEDICO.ApellidoPat FROM DIAGNOSTICO INNER JOIN CONSULTAGENERAL ON CONSULTAGENERAL.DIAGNOSTICO_idDIAGNOSTICO=DIAGNOSTICO.idDIAGNOSTICO INNER JOIN NOTA_MEDICA ON NOTA_MEDICA.CONSULTAGENERAL_idCONSULTAGENERAL = CONSULTAGENERAL.idCONSULTAGENERAL INNER JOIN MEDICO ON NOTA_MEDICA.CONSULTAGENERAL_MEDICO_CedProf=MEDICO.CedProf WHERE DIAGNOSTICO.PACIENTE_idPACIENTE=$id AND DIAGNOSTICO.idDIAGNOSTICO=$idDiag;";
+
+                            $result = mysqli_query($enlace, $query);
+                            
+
+                            while($row = mysqli_fetch_array($result)){ ?>
+                              
+                              <tr class='clickable-row' data-href='MostarNM.php?id=<?php echo $id;?>&idDiag=<?php echo $idDiag;?>&idNM=<?php echo $row['idNOTA_MEDICA'];?>'>
+                                
+                                <td><?php echo $row['FechaHora']; ?></td>
+                                <td><?php echo $row['Descripcion']; ?></td>
+                                <td><?php echo $row['FC']; ?></td>
+                                
+                                <td><?php echo $row['FR']; ?></td>
+                                <td><?php echo $row['Peso']; ?></td>
+                                <td><?php echo $row['Nombre'] . " " . $row['ApellidoPat']; ?></td>
+                              </tr>
+                              <?php
+                                }
+                                ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -270,7 +244,7 @@
                 <div class="row">
                         <div class="col-md-12">
 
-                            <a target="_blank" class="btn btn-rose pull-right" onclick="window.location.href = 'EditarHC.php';">
+                            <a class="btn btn-rose pull-right" onclick="window.location.href = 'EditarHC.php';">
                                     <i class="material-icons">add</i> Nuevo caso de cirugía
                                 </a>
 
@@ -384,5 +358,11 @@
 
     });
 </script>
-
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
 </html>

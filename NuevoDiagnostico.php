@@ -20,11 +20,9 @@
                                echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
                                exit;
                         }
-                        
-                        
 ?>
 
-<!doctype html>
+<!DOCTYPE HML>
 <html lang="en">
 
 <head>
@@ -37,6 +35,7 @@
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="assets/css/material-kit.css" rel="stylesheet"/>
     <!--  Material Dashboard CSS    -->
     <link href="assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -44,11 +43,12 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+
 </head>
 
 <body>
     <div class="wrapper">
-       <div class="sidebar" data-color="azul" data-image="bg2.JPG">
+        <div class="sidebar" data-color="azul" data-image="bg2.JPG">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -58,7 +58,6 @@
                 <a class="simple-text">
                     <a class="simple-text">
                         <?php
-                            
 
                             $query = "SELECT Nombre, ApellidoPat FROM PACIENTE WHERE idPACIENTE=$id";
                             $result = mysqli_query($enlace, $query);
@@ -76,7 +75,7 @@
                             <p>Vista General</p>
                         </a>
                     </li>
-                    <li>
+                    <li >
                         <a href="DatosPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons">person</i>
                             <p>Datos personales</p>
@@ -95,14 +94,14 @@
                         </a>
                     </li>
                     
-                    <li >
+                    <li>
                         <a href="Archivos.php?id=<?php echo $id; ?>">
                             <i class="material-icons">folder_shared</i>
                             <p>Archivos</p>
                         </a>
                     </li>
                     <li>
-                        <a href="CitasPaciente.php">
+                        <a href="CitasPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons text-gray">access_time</i>
                             <p>Citas programadas</p>
                         </a>
@@ -175,71 +174,75 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-
-                            <a class="btn btn-info pull-right"  href="NuevoDiagnostico.php?id=<?php echo $id; ?>">
-                                    <i class="material-icons">create</i> Nuevo diagnóstico
+                            
+                                <a class="btn btn-danger pull-right" href="Diagnosticos.php?id=<?php echo $id; ?>">
+                                    <i class="material-icons">close</i> Descartar cambios
                                 </a>
+                             
+                        <form action="NuevoDiag.php?id=<?php echo $id; ?>" method="post">
 
-
-                                
+                                <button type="submit" class="btn btn-success pull-right"><i class="material-icons">check</i> Salvar cambios</button>
+                            
 
                             <div class="card">
-                                <div class="card-header" data-background-color="azul">
-                                    <h4 class="title">Diagnósticos de enfermedades</h4>
-                                    <p class="category">Cada uno contiene las notas médicas, notas pre y pos quirúrgicas de las consultas generales y cirugías derivadas del diagnóstico.</p>
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">Agregar un nuevo diagnóstico</h4>
+                                    <p class="category">Agregue los datos requeridos para iniciar un nuevo caso de diagnóstico</p>
                                 </div>
-                                <div class="card-content table-responsive">
-                                    <table class="table">
-                                        <thead class="text-info">
-                                            <th>Fecha</th>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            
-                                            <th>Fecha Fin</th>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                            
-                            $query = "SELECT idDIAGNOSTICO,Nombre,FechaInicio,Descripcion,FechaFin FROM DIAGNOSTICO WHERE PACIENTE_idPACIENTE=$id;";
- 
-                            $result = mysqli_query($enlace, $query);
-                            
+                                <div class="card-content">
+                                     
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Nombre del diagnostico</label>
+                                                            <input type="text" name="nombrediag" class="form-control" required>
+                                                </div>
+                                            </div>
+                                                                                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Descripción</label>
+                                                            <input type="text" name="descripcion" class="form-control" required>
+                                                </div>
+                                            </div>
 
-                            while($row = mysqli_fetch_array($result)){ ?>
-                              
-                              <tr class='clickable-row' data-href='TablasCGyC.php?id=<?php echo $id;?>&idDiag=<?php echo $row['idDIAGNOSTICO'];?>'>
-                                
-                                <td><?php echo $row['FechaInicio']; ?></td>
-                                <td><?php echo $row['Nombre']; ?></td>
-                                <td><?php echo $row['Descripcion']; ?></td>
-                                
-                                <td><?php echo $row['FechaFin']; ?></td>
-    
-                              </tr>
-                              <?php
-                                }
-                                ?>
-                                        </tbody>
-                                    </table>
+                                        
+                                        
+                                        
+                                        
+                                       
+                                    
+                                </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
+                        
+                    </div>
+                </div>
             </div>
-            </div>
-            </div>
+           
         </div>
     </div>
 </body>
 <!--   Core JS Files   -->
-<script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
 <script src="assets/js/arrive.min.js"></script>
+  <script src="assets/js/bootstrap-selectpicker.js" type="text/javascript"></script>
 <!--  PerfectScrollbar Library -->
 <script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
+
+
+
+
+
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
@@ -256,12 +259,14 @@
 
     });
 </script>
-<script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-});
-</script>
+
+  <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <script src="assets/js/bootstrap-selectpicker.js" type="text/javascript"></script>
+
+  <!--  Plugin for Tags, full documentation here: http://xoxco.com/projects/code/tagsinput/  -->
+  <script src="assets/js/bootstrap-tagsinput.js"></script>
+
+  <!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="assets/js/jasny-bootstrap.min.js"></script>
 
 </html>
