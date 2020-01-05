@@ -146,16 +146,13 @@
                                   </a>
                                   <ul class="dropdown-menu">
                                       <li class="dropdown-header">
-                                          Médico
+                                          <?php echo $_SESSION['medico'];
+                                          ?>
                                       </li>
                                       <li>
                                           <a href="#pablo">Datos médicos</a>
                                       </li>
-                                      <li>
-                                        
-                                          <a href="#pablo">Configuración página</a>
-                                          
-                                      </li>
+                                      
                                       <li class="divider"></li>
                                       <li>
                                         
@@ -175,6 +172,13 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
+
+                          <a class="btn btn-info pull-right"  href="NuevaCita.php?id=<?php echo $id; ?>">
+                                    <i class="material-icons">add</i> Nueva cita
+                                </a>
+
+
+
                             <div class="card">
                                 <div class="card-header" data-background-color="azul">
                                     <h4 class="title">Citas programadas</h4>
@@ -183,48 +187,37 @@
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-info">
-                                            <th>Fecha</th>
-                                            <th>Hora</th>
+                                            <th>Fecha Hora</th>
                                             <th>Tipo</th>
+                                            <th>Descripción</th>
+                                            <th>Médico</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>15:30</td>
-                                                <td>Análisis de Orina</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>15:30</td>
-                                                <td>Análisis de cultivo</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>15:30</td>
-                                                <td>Análisis de cultivo</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>15:30</td>
-                                                <td>Análisis de cultivo</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>15:30</td>
-                                                <td>Análisis de cultivo</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>17-12-2019</td>
-                                                <td>15:30</td>
-                                                <td>Análisis de cultivo</td>
-                                                
-                                            </tr>
-                                        </tbody>
+                       <?php
+           $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+           if (!$enlace) {
+                   echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                   echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                   echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                   exit;
+           }
+           
+        $query = "SELECT CITA.FechaHora, CITA.Tipo, CITA.Descripcion, PACIENTE.Nombre AS Pac_Nombre,PACIENTE.ApellidoPat AS Pac_ApP, PACIENTE.ApellidoMat AS Pac_ApM, PACIENTE.Telefono, MEDICO.Nombre AS Med_Nombre, MEDICO.ApellidoPat AS Med_ApP,MEDICO.ApellidoMat AS Med_ApM FROM CITA INNER JOIN PACIENTE ON PACIENTE.idPACIENTE = CITA.PACIENTE_idPACIENTE INNER JOIN MEDICO ON MEDICO.CedProf = CITA.MEDICO_CedProf WHERE PACIENTE.idPACIENTE = $id;";
+
+           $result = mysqli_query($enlace, $query);
+            
+           while($row = mysqli_fetch_array($result)){ ?>
+             
+             <tr>
+               <td><?php echo $row['FechaHora']; ?></td>
+               <td><?php echo $row['Tipo']; ?></td>
+               <td><?php echo $row['Descripcion']; ?></td>
+               <td><?php echo $row['Med_Nombre'] . " " . $row['Med_ApP'] . " " . $row['Med_ApM']; ?></td>
+             </tr>
+             <?php
+               }?>
+                    </tbody>
                                     </table>
                                 </div>
                             </div>

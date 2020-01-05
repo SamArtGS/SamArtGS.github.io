@@ -14,6 +14,7 @@
 
     <head>
   <meta charset="utf-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icons.png" />
     <link rel="icon" type="image/png" href="assets/img/favicons.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -56,7 +57,7 @@
                                   </a>
                               </li>
                               <li>
-                                  <a href="Calendario.html">
+                                  <a href="Calendario.php">
                                         <i class="material-icons text-gray">insert_invitation</i>
                                       Calendario
                                   </a>
@@ -76,11 +77,7 @@
                                       <li>
                                           <a href="#pablo">Datos médicos</a>
                                       </li>
-                                      <li>
-                                        
-                                          <a href="#pablo">Configuración página</a>
-                                          
-                                      </li>
+                                      
                                       <li class="divider"></li>
                                       <li>
                                         
@@ -111,80 +108,32 @@
 
                 <div class="col-lg-3 col-sm-4" align="center">
                       <div class="form-group">
-                        <input type="text" value="" placeholder="Insertar campo" class="form-control" />
+                        <input type="text"  placeholder="Buscar Paciente" class="form-control" name="busqueda" id="busqueda" />
                       </div>
                     </div>
 
   <div class="col-lg-3 col-sm-4 " style="padding-top: 20px"  align="center">
-                  <select class="selectpicker" data-style="select-with-transition" multiple title="Elegir Campo" data-size="7">
-                    <option value="1"> Nombre Completo</option>
+                  <select id="categoria" class="selectpicker" data-style="select-with-transition"  data-size="7">
+                    <option value="1">Nombre</option>
                     <option value="2">Número Telefónico</option>
-                    <option value="3">Tipo de Sangre</option>
-                    <option value="4">Apellido Paterno</option>
-                    <option value="5">Apellido Materno</option>
-                    <option value="6">Sexo</option>
-                    <option value="7">Dirección</option>
                     <option value="8">ID </option>
                   </select>
                 </div>
   
 
-  <button class="btn btn-danger" align="center" onclick=""> <i class="material-icons">delete</i> Limpiar</button>
+  <button class="btn btn-danger" align="center" onclick="ClearFields(); obtener_registros();"> <i class="material-icons">delete</i> Limpiar</button>
   
   <button class="btn btn-warning" align="center"> <i class="material-icons">bar_chart</i>  Reportes</button>
   <button class="btn btn-info" align="center" onclick="window.location.href='IngresarUsuario.php'"> <i class="material-icons">person_add</i>Nuevo</button>
   <button class="btn btn-success" align="center"> <i class="material-icons">search</i>  Buscar</button>
 
 </div>
-      <div class="card">
-                <div class="card-body table-responsive">
-                  <table class="table table-hover">
-                    <thead class="text-danger">
-                      <th>ID</th>
-                      <th>Nombres</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Teléfono</th>
-                    </thead>
-                    <tbody >
-                      
-                        <?php
-                            $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
 
-                            if (!$enlace) {
-                                    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-                                    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-                                    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-                                    exit;
-                            }
-                            
-                            $query = "SELECT idPACIENTE, Nombre, ApellidoPat, ApellidoMat, Telefono FROM PACIENTE;";
- 
-                            $result = mysqli_query($enlace, $query);
-                             
-                            
-                            
+<div id="tabla">
 
-                            while($row = mysqli_fetch_array($result)){ ?>
-                              
-                              <tr class='clickable-row' data-href='dashboard.php?id=<?php echo $row['idPACIENTE'];?>'>
-                                
-                                <td><?php echo $row['idPACIENTE']; ?></td>
-                                <td><?php echo $row['Nombre']; ?></td>
-                                <td><?php echo $row['ApellidoPat']; ?></td>
-                                <td><?php echo $row['ApellidoMat']; ?></td>
-                                <td><?php echo $row['Telefono']; ?></td>
-    
-                              </tr>
-                              <?php
-                                }?>
-                              
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-               </div>
-                 </div>
+
+
+</div>
 
             
 </body>
@@ -255,19 +204,18 @@
 
     });
   </script>
+  <script type="text/javascript">
+    function ClearFields() {
 
-<script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-});
-</script>
-
+     document.getElementById("busqueda").value = "";
+     document.getElementById("categoria").value = "";
+}
+  </script>
   <script type="text/javascript">
     $().ready(function(){
 
       materialKitDemo.initContactUs2Map();
     });
   </script>
+  <script src="assets/js/buscar.js"></script>
 </html>

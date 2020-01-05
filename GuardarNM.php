@@ -56,6 +56,9 @@ if(!empty($fechaHora)){
     $sqlazo = "INSERT INTO NOTA_MEDICA(Temperatura,TA,TA2,FC,FR,Oxiometria,Peso,Talla,Padecimiento,ExploFisica,Tratamiento,Plan,Fecha,CONSULTAGENERAL_idCONSULTAGENERAL,CONSULTAGENERAL_DIAGNOSTICO_idDIAGNOSTICO,CONSULTAGENERAL_MEDICO_CedProf) VALUES ($Temperatura,$TA1,$TA2,$FC,$FR,$OX,$Peso,$Talla,'$Padecimiento','$ExploFisica','$Tratamiento','$Plan','$fecha',$lastid,$idDiag,$ced);";
 
         if(mysqli_query($enlace, $sqlazo)){
+          
+
+
           header("Location: TablasCGyC.php?id=$id&idDiag=$idDiag");
         }else{
           phpAlert("Error al ingresar nueva nota médica");

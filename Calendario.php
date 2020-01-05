@@ -7,11 +7,7 @@
         die();
       }
 
-      if(!isset($_GET['id'])){
-        header('Location: ListaPaciente.php');
-        die();
-      }
-      $id = $_GET['id'];
+      
       $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
 
                         if (!$enlace) {
@@ -86,7 +82,8 @@
                                   </a>
                                   <ul class="dropdown-menu">
                                       <li class="dropdown-header">
-                                          Médico
+                                          <?php echo $_SESSION['medico'];
+                                          ?>
                                       </li>
                                       <li>
                                           <a href="#pablo">Datos médicos</a>
@@ -111,7 +108,7 @@
 <div class="content" align="center" style="align-items: center;">
                 <div class="container-fluid" align="center" >
                     <div class="row" align="center" style="align-content: center;">
-                        <div class="col-md-10" align="center" style="align-content: center;">
+                        <div class="col-md-8" align="center" style="align-content: center;">
                             
                             <div class="card" align="center" style="align-content: center;">
                                 
@@ -122,9 +119,6 @@
                                             <div class="col-md-12 col-sm-4" align="center">
 
                                               <div id='calendar' align="center" style="padding-top: 70px"></div>
-                                              
-                                              
-                                         
                                               </div>
                                               </div>
                                               </div>
@@ -141,48 +135,41 @@
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-info">
-                                            <th>Fecha-Hora</th>
+                                            <th>FechaHora</th>
+                                            <th>Paciente</th>
                                             <th>Tipo</th>
                                             <th>Descripción</th>
+                                            <th>Teléfono</th>
                                             <th>Médico</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Consulta General</td>
-                                                <td>Padecimiento de úlceras pendiente</td>
-                                                <td >Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Consulta General</td>
-                                                <td>Padecimiento de úlceras pendiente</td>
-                                                <td >Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Consulta General</td>
-                                                <td>Padecimiento de úlceras pendiente</td>
-                                                <td >Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Consulta General</td>
-                                                <td>Padecimiento de úlceras pendiente</td>
-                                                <td >Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Consulta General</td>
-                                                <td>Padecimiento de úlceras pendiente</td>
-                                                <td >Nerio Gallegos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Consulta General</td>
-                                                <td>Padecimiento de úlceras pendiente</td>
-                                                <td >Nerio Gallegos</td>
-                                            </tr>
+                                           <?php
+                               $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+                               if (!$enlace) {
+                                       echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                                       echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                                       echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                                       exit;
+                               }
+                               
+                            $query = "SELECT CITA.FechaHora, CITA.Tipo, CITA.Descripcion, PACIENTE.Nombre AS Pac_Nombre,PACIENTE.ApellidoPat AS Pac_ApP, PACIENTE.ApellidoMat AS Pac_ApM, PACIENTE.Telefono, MEDICO.Nombre AS Med_Nombre, MEDICO.ApellidoPat AS Med_ApP,MEDICO.ApellidoMat AS Med_ApM FROM CITA INNER JOIN PACIENTE ON PACIENTE.idPACIENTE = CITA.PACIENTE_idPACIENTE INNER JOIN MEDICO ON MEDICO.CedProf = CITA.MEDICO_CedProf;";
+    
+                               $result = mysqli_query($enlace, $query);
+                                
+                               while($row = mysqli_fetch_array($result)){ ?>
+                                 
+                                 <tr>
+                                   <td><?php echo $row['FechaHora']; ?></td>
+                                    <td><?php echo $row['Pac_Nombre'] . " " . $row['Pac_ApP'] . " " . $row['Pac_ApM']; ?></td>
+                                   <td><?php echo $row['Tipo']; ?></td>
+                                   <td><?php echo $row['Descripcion']; ?></td>
+                                   
+                                   <td><?php echo $row['Telefono']; ?></td>
+                                   <td><?php echo $row['Med_Nombre'] . " " . $row['Med_ApP'] . " " . $row['Med_ApM']; ?></td>
+                                 </tr>
+                                 <?php
+                                   }?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -203,37 +190,57 @@
 
 
 <script>
-  $(document).ready(function() {
-      var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-    $('#external-events div.external-event').each(function() {
-      
-      var eventObject = {
-        title: $.trim($(this).text()) // use the element's text as the event title
-      };
-      $(this).data('eventObject', eventObject);
-      // make the event draggable using jQuery UI
-      $(this).draggable({
-        zIndex: 999,
-        revert: true,      // will cause the event to go back to its
-        revertDuration: 0  //  original position after the drag
-      });
-    });
-    
-    var calendar =  $('#calendar').fullCalendar({
-      header: {
-        left: 'title',
-        center: 'agendaDay,agendaWeek,month',
-        right: 'prev,next today'
-      },
-      editable: true,
-      firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
-      selectable: true,
-      defaultView: 'month',
-      axisFormat: 'h:mm',
-      columnFormat: {
+
+    $(document).ready(function() {
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        /*
+        className: default(transparent), important(red), chill(pink), success(green), info(blue)
+        */
+
+        /* initialize the external events
+        -----------------------------------------------------------------*/
+
+        $('#external-events div.external-event').each(function() {
+
+            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+            // it doesn't need to have a start or end
+            var eventObject = {
+                title: $.trim($(this).text()) // use the element's text as the event title
+            };
+
+            // store the Event Object in the DOM element so we can get to it later
+            $(this).data('eventObject', eventObject);
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+
+        });
+
+
+        /* initialize the calendar
+        -----------------------------------------------------------------*/
+
+        var calendar =  $('#calendar').fullCalendar({
+            header: {
+                left: 'title',
+                center: 'agendaDay,agendaWeek,month',
+                right: 'prev,next today'
+            },
+            editable: true,
+            firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+            selectable: true,
+            defaultView: 'month',
+
+            axisFormat: 'h:mm',
+            columnFormat: {
                 month: 'ddd',    // Mon
                 week: 'ddd d', // Mon 7
                 day: 'dddd M/d',  // Monday 9/7
@@ -244,44 +251,77 @@
                 week: "MMMM yyyy", // September 2009
                 day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
             },
-      allDaySlot: false,
-      selectHelper: true,
-      select: function(start, end, allDay) {
-        var title = prompt('Event Title:');
-        if (title) {
-          calendar.fullCalendar('renderEvent',
-            {
-              title: title,
-              start: start,
-              end: end,
-              allDay: allDay
+            allDaySlot: false,
+            selectHelper: true,
+            select: function(start, end, allDay) {
+                var title = prompt('Event Title:');
+                if (title) {
+                    calendar.fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                        },
+                        true // make the event "stick"
+                    );
+                }
+                calendar.fullCalendar('unselect');
             },
-            true // make the event "stick"
-          );
-        }
-        calendar.fullCalendar('unselect');
-      },
-      droppable: true, // this allows things to be dropped onto the calendar !!!
-      drop: function(date, allDay) { // this function is called when something is dropped
-        // retrieve the dropped element's stored Event Object
-        var originalEventObject = $(this).data('eventObject');
-        // we need to copy it, so that multiple events don't have a reference to the same object
-        var copiedEventObject = $.extend({}, originalEventObject);
-        // assign it the date that was reported
-        copiedEventObject.start = date;
-        copiedEventObject.allDay = allDay;
-        // render the event on the calendar
-        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-        // is the "remove after drop" checkbox checked?
-        if ($('#drop-remove').is(':checked')) {
-          // if so, remove the element from the "Draggable Events" list
-          $(this).remove();
-        }
-      },
-       
+            droppable: true, // this allows things to be dropped onto the calendar !!!
+            drop: function(date, allDay) { // this function is called when something is dropped
+
+                // retrieve the dropped element's stored Event Object
+                var originalEventObject = $(this).data('eventObject');
+
+                // we need to copy it, so that multiple events don't have a reference to the same object
+                var copiedEventObject = $.extend({}, originalEventObject);
+
+                // assign it the date that was reported
+                copiedEventObject.start = date;
+                copiedEventObject.allDay = allDay;
+
+                // render the event on the calendar
+               
+                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+
+            },
+
+            events: [
+                                                    
+              <?php
+               $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+               if (!$enlace) {
+                       echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                       echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                       echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                       exit;
+               }
+            $query = "SELECT YEAR(CITA.FechaHora) AS anio,MONTH(CITA.FechaHora) AS mes, DAY(CITA.FechaHora) AS dia,HOUR(CITA.FechaHora) AS hora,MINUTE(CITA.FechaHora) AS minuto,PACIENTE.Nombre AS Pac_Nombre,PACIENTE.ApellidoPat AS Pac_ApP FROM CITA INNER JOIN PACIENTE ON PACIENTE.idPACIENTE = CITA.PACIENTE_idPACIENTE;";
+
+               $result = mysqli_query($enlace, $query);
+                
+               while($row = mysqli_fetch_array($result)){ ?>
+                {
+                    title: '<?php echo $row['Pac_Nombre']?>', 
+                    start: new Date(<?php echo $row['anio']?>, <?php echo $row['mes']-1;?>, <?php echo $row['dia']?>, <?php echo $row['hora']?>, <?php echo $row['minuto']?>),
+                    allDay: false,
+                    className: 'important'
+                },
+                                                    <?php }?>
+            ],
+        });
+
+
     });
-  });
+
 </script>
 <script type="text/javascript">
 

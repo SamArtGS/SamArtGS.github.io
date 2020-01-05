@@ -87,7 +87,7 @@
                             <p>Historia Clínica</p>
                         </a>
                     </li>
-                    <li class="active">
+                    <li >
                         <a href="Diagnosticos.php?id=<?php echo $id; ?>">
                             <i class="material-icons">accessibility_new</i>
                             <p>Diagnósticos</p>
@@ -100,7 +100,7 @@
                             <p>Archivos</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="CitasPaciente.php?id=<?php echo $id; ?>">
                             <i class="material-icons text-gray">access_time</i>
                             <p>Citas programadas</p>
@@ -172,252 +172,161 @@
                     <div class="row">
                         <div class="col-md-12">
                             
-                                <a class="btn btn-danger pull-right" href="Diagnosticos.php?id=<?php echo $id; ?>">
+                                <a class="btn btn-danger pull-right" href="CitasPaciente.php?id=<?php echo $id; ?>">
                                     <i class="material-icons">close</i> Descartar cambios
                                 </a>
                              
-                        <form action="EditarPaciente.php?id=<?php echo $id; ?>" method="post">
+                        <form action="InsertarNC.php?id=<?php echo $id; ?>" method="post">
 
                                 <button type="submit" class="btn btn-success pull-right"><i class="material-icons">check</i> Salvar cambios</button>
                             
 
                             <div class="card">
                                 <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Edición de datos personales del paciente</h4>
-                                    <p class="category">Puedes editar únicamente las casillas señaladas. Para alterar datos sensibles por favor contacte al administrador</p>
+                                    <h4 class="title">Agregar nueva cita</h4>
+                                    <p class="category">Verifique la disponibilidad del médico. No pueden haber 2 citas a la misma hora, día con el mismo médico.</p>
                                 </div>
                                 <div class="card-content">
-                                     
-                                    
-
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Nombre</label>
-                                                    <?php
+                                                    <h6>
+                                                        <?php
                                                             $query = "SELECT Nombre FROM PACIENTE WHERE idPACIENTE=$id";
                                                             $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
                                                             $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" name="nombres" class="form-control" required>
+                                                            echo $row['Nombre'];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Apellido Paterno</label>
-                                                    <?php
+                                                    <h6>
+                                                        <?php
                                                             $query = "SELECT ApellidoPat FROM PACIENTE WHERE idPACIENTE=$id";
                                                             $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
                                                             $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" name="apellidopat" class="form-control" value="<?php echo $row[0]; ?>" required>
+                                                            echo $row['ApellidoPat'];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Apellido Materno</label>
-                                                    <?php
+                                                    <h6>
+                                                        <?php
                                                             $query = "SELECT ApellidoMat FROM PACIENTE WHERE idPACIENTE=$id";
                                                             $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
                                                             $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" name="apellidomat" class="form-control" value="<?php echo $row[0]; ?>" required>
+                                                            echo $row['ApellidoMat'];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
-                                        </div>
-                                       <div class="row">
-                                            <div class="col-md-2">
-                                                <?php
-                                                            $query = "SELECT Sexo FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                            if($row[0]="Hombre"){
-                                                                print("<select class='selectpicker form-group' data-style='select-with-transition'  title='Sexo' data-size='2' name='sexo'>
-                                                <option value='Hombre' selected>Hombre</option>
-                                                <option value='Mujer'>Mujer</option>");
-                                                            }else{
-                                                                print("<select class='selectpicker form-group' data-style='select-with-transition'  title='Sexo' data-size='2' name='sexo'>
-                                                <option value='Hombre' >Hombre</option>
-                                                <option value='Mujer' selected>Mujer</option>");
-                                                            }
-                                                        ?>
-                                                
-                                                
-                                              </select>
-                                            </div>
-                                            <div class="col-lg-3"   align="center">
-                                                <?php
-                                                            $query = "SELECT TipoSangre FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                        ?>
-                                              <select class="selectpicker form-group" value="<?php echo $row[0]?>" data-style="select-with-transition" title="Tipo de sangre" data-size="8" name="tiposangre">
-                                                <option value='<?php echo $row[0]?>' selected disabled><?php echo $row[0]?></option>
-                                                <option value="A+">A+</option>
-                                                <option value="A-">A-</option>
-                                                <option value="B+">B+</option>
-                                                <option value="B-">B-</option>
-                                                <option value="O+">O+</option>
-                                                <option value="O-">O-</option>
-                                                <option value="AB+">AB+</option>
-                                                <option value="AB-">AB-</option>
-                                              </select>
-                                              </div>
-                                            
-                                            <div class="col-md-3">
+                                            <div class="col-md-1">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Fecha de Nacimiento</label>
-                                                    <?php
+                                                    <label class="control-label" style="font-size: 12px !important">Edad</label>
+                                                    <h6>
+                                                        <?php
                                                             $query = "SELECT FechaNacimiento FROM PACIENTE WHERE idPACIENTE=$id";
                                                             $result = mysqli_query($enlace, $query);
                                                             if(!$result){
                                                                 echo "NA";
                                                             }
                                                             $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" name="fechanacimiento" class="form-control" value="<?php echo $row[0]; ?>">
+                                                            $_age = floor((time() - strtotime($row[0])) / 31556926);
+                                                            echo $_age;
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Teléfono</label>
-                                                    <?php
+                                                    <h6>
+                                                        <?php
                                                             $query = "SELECT Telefono FROM PACIENTE WHERE idPACIENTE=$id";
                                                             $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
                                                             $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="number" name="telefono" class="form-control" value="<?php echo $row[0];?>" required>
+                                                            echo $row['Telefono'];
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                             </div>
+                                        </div>
+                                     
+                                        <div class="row">
+
+                                            <div class="col-md-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Día</label>
+                                                            <input type="text" class="form-control" required name="dia">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Mes</label>
+                                                            <input type="text" class="form-control" required name="mes" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Año</label>
+                                                            <input type="text" class="form-control" required name="anio" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Hora</label>
+                                                            <input type="text" class="form-control" required name="hora" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Minuto</label>
+                                                            <input type="text" class="form-control" required name="minuto" >
+                                                </div>
+                                            </div>
+                                                                                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Tipo</label>
+                                                            <input type="text" class="form-control" required name="tipo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Descripción</label>
+                                                            <input type="text" class="form-control" required name="descripcion">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            
+                                            <div class="col-lg-4"   align="center">
+                                              <h5> <b>  Médico que atenderá:</b></h5>
+                                                <?php
+                                                    $query = "SELECT CedProf,Nombre,ApellidoPat,ApellidoMat FROM MEDICO;";
+                                                    $result = mysqli_query($enlace, $query);
+                                                        ?>
+                                              <select class="selectpicker form-group" data-style="select-with-transition" title="Lista de Médicos" name="medicoSeleccionado">
+                                                <?php
+
+                                                    while ($row = $result->fetch_assoc()) { ?>
+                                                        <option value=<?php echo $row['CedProf'];?> ><?php echo $row['Nombre'] . " " . $row['ApellidoPat'] . " " . $row['ApellidoMat'];?></option>
+                                                    <?php }?>
+                                              </select>
+                                              </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Dirección</label>
-                                                    <?php
-                                                            $query = "SELECT Direccion FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" class="form-control" name="direccion" value="<?php echo $row[0]; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Ciudad</label>
-                                                    <?php
-                                                            $query = "SELECT Ciudad FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" class="form-control" name="ciudad" value="<?php echo $row[0]; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Estado</label>
-                                                    <?php
-                                                            $query = "SELECT Estado FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" class="form-control" name="estado" value="<?php echo $row[0]; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Código Postal</label>
-                                                    <?php
-                                                            $query = "SELECT CP FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="number" class="form-control" name="cp" value="<?php echo $row[0]; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Estado Civil</label>
-                                                    <?php
-                                                            $query = "SELECT EstadoCivil FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" class="form-control" name="EstadoCivil" value="<?php echo $row[0]; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Religión</label>
-                                                    <?php
-                                                            $query = "SELECT Religion FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" class="form-control" name="religion" value="<?php echo $row[0]; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Lugar de Nacimiento</label>
-                                                    <?php
-                                                            $query = "SELECT LugarNacim FROM PACIENTE WHERE idPACIENTE=$id";
-                                                            $result = mysqli_query($enlace, $query);
-                                                            if(!$result){
-                                                                echo "NA";
-                                                            }
-                                                            $row = mysqli_fetch_array($result);
-                                                            ?>
-                                                            <input type="text" class="form-control" name="lugarnacimiento" value="<?php echo $row[0]; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="clearfix"></div>
-                                    
-                                </div>
-                            </div>
                             </form>
                         </div>
                         

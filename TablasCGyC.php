@@ -147,16 +147,13 @@
                                   </a>
                                   <ul class="dropdown-menu">
                                       <li class="dropdown-header">
-                                          Médico
+                                          <?php echo $_SESSION['medico'];
+                                          ?>
                                       </li>
                                       <li>
                                           <a href="#pablo">Datos médicos</a>
                                       </li>
-                                      <li>
-                                        
-                                          <a href="#pablo">Configuración página</a>
-                                          
-                                      </li>
+                                      
                                       <li class="divider"></li>
                                       <li>
                                         

@@ -135,7 +135,7 @@
 
 
 
-<div class="page-header header-filter" style="background-image: url('bg2.jpg');height: 100vh; background-size: cover; background-position: top center;">
+<div class="page-header header-filter" style="background-image: url('bg2.JPG');height: 100vh; background-size: cover; background-position: top center;">
     <div class="container">
     <div class="row">
           <div class="col-md-8 col-md-offset-2 text-center">

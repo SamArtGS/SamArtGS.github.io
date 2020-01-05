@@ -78,11 +78,7 @@
                                       <li>
                                           <a href="#pablo">Datos médicos</a>
                                       </li>
-                                      <li>
-                                        
-                                          <a href="#pablo">Configuración página</a>
-                                          
-                                      </li>
+                                      
                                       <li class="divider"></li>
                                       <li>
                                         
