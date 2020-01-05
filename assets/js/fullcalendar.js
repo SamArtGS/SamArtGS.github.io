@@ -5821,7 +5821,7 @@ function segmentElementEach(segments, callback) { // TODO: use in AgendaView?
 }
 
 
-// A cmp function for determining which segments should appear higher up
+// A cmp function for determining which segments should appear higher upO
 function compareDaySegments(a, b) {
 	return (b.rightCol - b.leftCol) - (a.rightCol - a.leftCol) || // put wider events first
 		b.event.allDay - a.event.allDay || // if tie, put all-day events first (booleans cast to 0/1)

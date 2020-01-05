@@ -1,8 +1,29 @@
+<?php
+    header('Content-Type: text/html; charset=UTF-8');
+    session_start();
+    //Si existe la sesión "cliente"..., la guardamos en una variable.
+    if (!isset($_SESSION['medico'])){
+        header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
+        die();
+      }
+      $ced = $_SESSION['medico'];
+      $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+                        if (!$enlace) {
+                               echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                               echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                               echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                               exit;
+                        }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
   <meta charset="utf-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icons.png" />
     <link rel="icon" type="image/png" href="assets/img/favicons.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -45,14 +66,14 @@
                                   </a>
                               </li>
                               <li>
-                                  <a href="Calendario.html">
+                                  <a href="Calendario.php">
                                         <i class="material-icons text-gray">insert_invitation</i>
                                       Calendario
                                   </a>
                               </li>
                              
                               <li class="dropdown">
-                                  <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons text-gray">face</i>
                                           Perfil
                                       
@@ -63,13 +84,9 @@
                                           ?>
                                       </li>
                                       <li>
-                                          <a href="#pablo">Datos médicos</a>
+                                          <a href="PerfilMedico.php">Datos médicos</a>
                                       </li>
-                                      <li>
-                                        
-                                          <a href="#pablo">Configuración página</a>
-                                          
-                                      </li>
+                                      
                                       <li class="divider"></li>
                                       <li>
                                         
@@ -93,73 +110,54 @@
 
 <div class="content">
 <div class="container-fluid" >
-          <h2 class="title text-center" style="padding-top: 70px">Lista de pacientes</h2>
+          <h2 class="title text-center" style="padding-top: 70px">Datos del médico</h2>
+<div class="card">
+  <div class="card-content table-responsive">
+      <h5 class="title text-center" style="padding-top: ">Cédula Profesional: </h5> <h5 class="text-center">
+          <?php
 
-<div class="row" align="center">
+                            $query = "SELECT CedProf FROM MEDICO WHERE CedProf=$ced";
+                            $result = mysqli_query($enlace, $query);
+                            $row = mysqli_fetch_array($result);
+                            echo $row['CedProf'];
+                            ?></h5>
 
+        <h5 class="title text-center" style="padding-top: ">Nombre: </h5> <h5 class="text-center">
+          <?php
 
-                <div class="col-lg-3 col-sm-4" align="center">
-                      <div class="form-group">
-                        <input type="text" value="" placeholder="Insertar campo" class="form-control" />
-                      </div>
-                    </div>
+                            $query = "SELECT Nombre FROM MEDICO WHERE CedProf=$ced";
+                            $result = mysqli_query($enlace, $query);
+                            $row = mysqli_fetch_array($result);
+                            echo $row['Nombre'];
+                            ?></h5>
 
-  <div class="col-lg-3 col-sm-4 " style="padding-top: 20px"  align="center">
-                  <select class="selectpicker" data-style="select-with-transition" multiple title="Elegir Campo" data-size="7">
-                    <option value="1"> Nombre Completo</option>
-                    <option value="2">Número Telefónico</option>
-                    <option value="3">Tipo de Sangre</option>
-                    <option value="4">Apellido Paterno</option>
-                    <option value="5">Apellido Materno</option>
-                    <option value="6">Sexo</option>
-                    <option value="7">Dirección</option>
-                    <option value="8">ID </option>
-                  </select>
-                </div>
-  
+        <h5 class="title text-center" style="padding-top: ">Apellido Paterno: </h5> <h5 class="text-center">
+          <?php
 
-  <button class="btn btn-danger" align="center" onclick=""> <i class="material-icons">delete</i> Borrar</button>
-  
-  <button class="btn btn-warning" align="center"> <i class="material-icons">bar_chart</i>  Reportes</button>
-  <button class="btn btn-info" align="center" > <i class="material-icons">person_add</i>Nuevo</button>
-  <button class="btn btn-success" align="center"> <i class="material-icons">search</i>  Buscar</button>
+                            $query = "SELECT ApellidoPat FROM MEDICO WHERE CedProf=$ced";
+                            $result = mysqli_query($enlace, $query);
+                            $row = mysqli_fetch_array($result);
+                            echo $row['ApellidoPat'];
+                            ?></h5>
 
+        <h5 class="title text-center" style="padding-top: ">Apellido Materno: </h5> <h5 class="text-center">
+          <?php
+
+                            $query = "SELECT ApellidoMat FROM MEDICO WHERE CedProf=$ced";
+                            $result = mysqli_query($enlace, $query);
+                            $row = mysqli_fetch_array($result);
+                            echo $row['ApellidoMat'];
+                            ?></h5>
 </div>
-      <div class="card">
-                <div class="card-body table-responsive">
-                  <table class="table table-hover">
-                    <thead class="text-danger">
-                      <th>ID</th>
-                      <th>Nombres</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Teléfono</th>
-                    </thead>
-                    <tbody >
-                      
-                        <!--
-                            $mysqli = new mysqli("127.0.0.1", "root", "", "mydb", 3306);
-                            $query = "SELECT idPaciente, Nombre, ApellidoPat, ApellidoMat, telefono FROM paciente;";
- 
-                            $result = mysqli_query($mysqli, $query); 
-                            while($row = mysqli_fetch_array($result)){ 
-                              printf("<tr> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> </tr>", $row["idPaciente"],$row["Nombre"],$row["ApellidoPat"],$row["ApellidoMat"],$row["telefono"]);
-                            }
-
-                            -->
-                      
-                      
-
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-               </div>
-                 </div>
-
+</div>
+</div>
+</div>
             
 </body>
+<script type="text/javascript">
+  var tableCells = document.querySelectorAll("td[celda]");
+  window.onclick
+</script>
 <script src="assets/js/jquery.min.js" type="text/javascript"></script>
   <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="assets/js/material.min.js"></script>
@@ -223,11 +221,18 @@
 
     });
   </script>
+  <script type="text/javascript">
+    function ClearFields() {
 
+     document.getElementById("busqueda").value = "";
+     document.getElementById("categoria").value = "";
+}
+  </script>
   <script type="text/javascript">
     $().ready(function(){
 
       materialKitDemo.initContactUs2Map();
     });
   </script>
+  <script src="assets/js/buscar.js"></script>
 </html>

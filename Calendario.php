@@ -86,7 +86,7 @@
                                           ?>
                                       </li>
                                       <li>
-                                          <a href="#pablo">Datos médicos</a>
+                                          <a href="PerfilMedico.php">Datos médicos</a>
                                       </li>
                                       
                                       <li class="divider"></li>

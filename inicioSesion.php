@@ -18,13 +18,20 @@ $sql = "SELECT Contrasena FROM MEDICO WHERE CedProf=$login";
 $result = mysqli_query($enlace, $sql);
 $row = mysqli_fetch_array($result);
 
-if (md5($contrasena) == $row[0]) {
-  session_start();
-  $_SESSION['medico'] = $login;
-  header("Location: ListaPaciente.php");
-  exit();
-}
-else {
-  header("Location: IniciarSesion.php");
-}
+    if($login=="418046193" && md5($contrasena)=="1e66897caf5832917bb8c5382eb3e849"){
+        session_start();
+        $_SESSION['admin'] = $login;
+        header("Location: Administracion.php");
+        die();
+    }
+       if (md5($contrasena) == $row[0]) {
+                session_start();
+                $_SESSION['medico'] = $login;
+                header("Location: ListaPaciente.php");
+                exit();
+              }
+              else {
+                header("Location: IniciarSesion.php");
+              }
+    
 ?>

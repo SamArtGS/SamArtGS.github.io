@@ -2,10 +2,19 @@
     header('Content-Type: text/html; charset=UTF-8');
     session_start();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
-    if (!isset($_SESSION['medico'])){
+    if (!isset($_SESSION['admin'])){
         header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
         die();
       }
+      $ced = $_SESSION['admin'];
+      $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+                        if (!$enlace) {
+                               echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                               echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                               echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                               exit;
+                        }
 ?>
 
 
@@ -50,18 +59,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navigation-example-2">
                         <ul class="nav navbar-nav navbar-right">
-                              <li>
-                                  <a href="ListaPaciente.php">
-                                    <i class="material-icons text-gray">table_chart</i>
-                                      Tabla general
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="Calendario.php">
-                                        <i class="material-icons text-gray">insert_invitation</i>
-                                      Calendario
-                                  </a>
-                              </li>
+                              
                              
                               <li class="dropdown">
                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -71,12 +69,9 @@
                                   </a>
                                   <ul class="dropdown-menu">
                                       <li class="dropdown-header">
-                                          <?php echo $_SESSION['medico'];
-                                          ?>
+                                          Administración
                                       </li>
-                                      <li>
-                                          <a href="PerfilMedico.php">Datos médicos</a>
-                                      </li>
+                                      
                                       
                                       <li class="divider"></li>
                                       <li>
@@ -101,40 +96,98 @@
 
 <div class="content">
 <div class="container-fluid" >
-          <h2 class="title text-center" style="padding-top: 70px">Lista de pacientes</h2>
 
+          <h2 class="title text-center" style="padding-top: 70px">Administración de la clínica</h2>
 <div class="row" align="center">
 
 
-                <div class="col-lg-3 col-sm-4" align="center">
-                      <div class="form-group">
-                        <input type="text"  placeholder="Buscar Paciente" class="form-control" name="busqueda" id="busqueda" />
-                      </div>
-                    </div>
+    <button class="btn btn-warning pull-center" align="center" onclick="window.location.href='ReportesAd.php'"> <i class="material-icons">bar_chart</i>  Reportes</button>
 
-  <div class="col-lg-3 col-sm-4 " style="padding-top: 20px"  align="center">
-                  <select id="categoria" class="selectpicker" data-style="select-with-transition"  data-size="7">
-                    <option value="1">Nombre</option>
-                    <option value="2">Número Telefónico</option>
-                    <option value="8">ID </option>
-                  </select>
-                </div>
-  
+    <button class="btn btn-info pull-center" align="center" onclick="window.location.href='IngresarMedico.php'"> <i class="material-icons">person_add</i>Nuevo médico</button>
 
-  <button class="btn btn-danger" align="center" onclick="ClearFields(); obtener_registros();"> <i class="material-icons">delete</i> Limpiar</button>
-  
-  <button class="btn btn-warning" align="center" onclick="window.location.href='Reportes.php'"> <i class="material-icons" >bar_chart</i>  Reportes</button>
-  <button class="btn btn-info" align="center" onclick="window.location.href='IngresarUsuario.php'"> <i class="material-icons">person_add</i>Nuevo</button>
-  <button class="btn btn-success" align="center"> <i class="material-icons">search</i>  Buscar</button>
+    <button class="btn btn-success pull-center" align="center"> <i class="material-icons">search</i>  Documentacion</button>
+</div>
+<div class="card">
+  <div class="card-content table-responsive">
+
+<h3 class="title text-center" style="padding-top: 70px">Lista de pacientes</h3>
+      <table class="table table-hover">
+                    <thead class="text-danger">
+                      <th>ID</th>
+                      <th>Nombres</th>
+                      <th>Apellido Paterno</th>
+                      <th>Apellido Materno</th>
+                      <th>Teléfono</th>
+                    </thead>
+                    <tbody >
+                      
+                        <?php
+                            
+                            
+                            $query = "SELECT idPACIENTE, Nombre, ApellidoPat, ApellidoMat, Telefono FROM PACIENTE;";
+ 
+                            $result = mysqli_query($enlace, $query);
+                             
+                            
+                            
+                            while($row = mysqli_fetch_array($result)){ ?>
+                              
+                              <tr >
+                                
+                                <td><?php echo $row['idPACIENTE']; ?></td>
+                                <td><?php echo $row['Nombre']; ?></td>
+                                <td><?php echo $row['ApellidoPat']; ?></td>
+                                <td><?php echo $row['ApellidoMat']; ?></td>
+                                <td><?php echo $row['Telefono']; ?></td>
+    
+                              </tr>
+                              <?php
+                                }?>
+                              
+                    </tbody>
+                  </table>
+
+
+<h3 class="title text-center" style="padding-top: 70px">Lista de médicos</h3>
+<table class="table table-hover">
+                   <thead class="text-danger">
+                     <th>Cédula Profesional</th>
+                     <th>Nombres</th>
+                     <th>Apellido Paterno</th>
+                     <th>Apellido Materno</th>
+                     
+                   </thead>
+                   <tbody >
+                     
+                       <?php
+                           
+                           
+                           $query = "SELECT * FROM MEDICO;";
+
+                           $result = mysqli_query($enlace, $query);
+                            
+                           
+                           
+                           while($row = mysqli_fetch_array($result)){ ?>
+                             
+                             <tr >
+                               
+                               <td><?php echo $row['CedProf']; ?></td>
+                               <td><?php echo $row['Nombre']; ?></td>
+                               <td><?php echo $row['ApellidoPat']; ?></td>
+                               <td><?php echo $row['ApellidoMat']; ?></td>
+   
+                             </tr>
+                             <?php
+                               }?>
+                             
+                   </tbody>
+                 </table>
 
 </div>
-
-<div id="tabla">
-
-
-
 </div>
-
+</div>
+</div>
             
 </body>
 <script type="text/javascript">

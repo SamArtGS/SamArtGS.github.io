@@ -148,7 +148,7 @@
                                           ?>
                                       </li>
                                       <li>
-                                          <a href="#pablo">Datos médicos</a>
+                                          <a href="PerfilMedico.php">Datos médicos</a>
                                       </li>
                                       
                                       <li class="divider"></li>
@@ -169,384 +169,317 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header" data-background-color="orange">
-                                    <i class="material-icons">content_copy</i>
-                                </div>
-                                <div class="card-content">
-                                    <p class="category">Used Space</p>
-                                    <h3 class="title">49/50
-                                        <small>GB</small>
-                                    </h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons text-danger">warning</i>
-                                        <a href="#pablo">Get More Space...</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="green">
-                                    <i class="material-icons">store</i>
+                                    <i class="material-icons">visibility</i>
                                 </div>
                                 <div class="card-content">
-                                    <p class="category">Revenue</p>
-                                    <h3 class="title">$34,245</h3>
+                                    <p class="category">Diagnósticos</p>
+                                    <h3 class="title">
+                                        <?php
+                                            $query = "SELECT COUNT(*) FROM DIAGNOSTICO WHERE PACIENTE_idPACIENTE=$id;";
+                                            $result = mysqli_query($enlace, $query);
+                                            $row = mysqli_fetch_array($result);
+                                            echo $row['COUNT(*)'];
+                                        ?>
+                                    </h3>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">date_range</i> Last 24 Hours
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="red">
-                                    <i class="material-icons">info_outline</i>
+                                    <i class="material-icons">favorite_border</i>
                                 </div>
                                 <div class="card-content">
-                                    <p class="category">Fixed Issues</p>
-                                    <h3 class="title">75</h3>
+                                    <p class="category">Notas Médicas</p>
+                                    <h3 class="title">
+                                        <?php
+                                            $query = "SELECT COUNT(*) FROM DIAGNOSTICO WHERE PACIENTE_idPACIENTE=$id;";
+                                            $result = mysqli_query($enlace, $query);
+                                            $row = mysqli_fetch_array($result);
+                                            echo $row['COUNT(*)'];
+                                        ?>
+                                    </h3>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">local_offer</i> Tracked from Github
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="blue">
-                                    <i class="fa fa-twitter"></i>
+                                    <i class="material-icons">insert_invitation</i>
                                 </div>
                                 <div class="card-content">
-                                    <p class="category">Followers</p>
-                                    <h3 class="title">+245</h3>
+                                    <p class="category">Citas</p>
+                                    <h3 class="title">
+                                        <?php
+                                            $query = "SELECT COUNT(*) FROM CITA INNER JOIN PACIENTE ON PACIENTE.idPACIENTE = CITA.PACIENTE_idPACIENTE INNER JOIN MEDICO ON MEDICO.CedProf = CITA.MEDICO_CedProf WHERE PACIENTE.idPACIENTE = $id;";
+                                            $result = mysqli_query($enlace, $query);
+                                            $row = mysqli_fetch_array($result);
+                                            echo $row['COUNT(*)'];
+                                        ?>
+                                    </h3>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">update</i> Just Updated
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
+
+                    
+
+
+                        <div class="row">
+
+                        <div class="col-md-12">
+                            
+                            
+                               
+                           
+
                             <div class="card">
-                                <div class="card-header card-chart" data-background-color="green">
-                                    <div class="ct-chart" id="dailySalesChart"></div>
+                                <div class="card-header " data-background-color="any">
+                                    <h3 class="title text-center">Datos personales</h3>
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title">Daily Sales</h4>
-                                    <p class="category">
-                                        <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">access_time</i> updated 4 minutes ago
-                                    </div>
+                                     
+                                    <form>
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Nombre</label>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT Nombre FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['Nombre'];
+                                                        ?>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Apellido Paterno</label>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT ApellidoPat FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['ApellidoPat'];
+                                                        ?>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Apellido Materno</label>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT ApellidoMat FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row['ApellidoMat'];
+                                                        ?>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Edad</label>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT FechaNacimiento FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            $_age = floor((time() - strtotime($row[0])) / 31556926);
+                                                            echo $_age;
+                                                        ?>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Sexo</label>
+                                                    <h6>
+
+                                                        <?php
+                                                            $query = "SELECT Sexo FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Tipo Sangre</label>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT TipoSangre FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Fecha de Nacimiento</label>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT FechaNacimiento FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label" style="font-size: 12px !important">Teléfono</label>
+                                                    <h6>
+                                                        <?php
+                                                            $query = "SELECT Telefono FROM PACIENTE WHERE idPACIENTE=$id";
+                                                            $result = mysqli_query($enlace, $query);
+                                                            if(!$result){
+                                                                echo "NA";
+                                                            }
+                                                            $row = mysqli_fetch_array($result);
+                                                            echo $row[0];
+                                                        ?>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                        <div class="clearfix"></div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header card-chart" data-background-color="orange">
-                                    <div class="ct-chart" id="emailsSubscriptionChart"></div>
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="title">Email Subscriptions</h4>
-                                    <p class="category">Last Campaign Performance</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">access_time</i> campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header card-chart" data-background-color="red">
-                                    <div class="ct-chart" id="completedTasksChart"></div>
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="title">Completed Tasks</h4>
-                                    <p class="category">Last Campaign Performance</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">access_time</i> campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
+
+
+
+
+
+
+
+
+
+                    
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
-                            <div class="card card-nav-tabs">
-                                <div class="card-header" data-background-color="blue">
-                                    <div class="nav-tabs-navigation">
-                                        <div class="nav-tabs-wrapper">
-                                            <span class="nav-tabs-title">Tasks:</span>
-                                            <ul class="nav nav-tabs" data-tabs="tabs">
-                                                <li class="active">
-                                                    <a href="#profile" data-toggle="tab">
-                                                        <i class="material-icons">bug_report</i> Bugs
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="#messages" data-toggle="tab">
-                                                        <i class="material-icons">code</i> Website
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="#settings" data-toggle="tab">
-                                                        <i class="material-icons">cloud</i> Server
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="profile">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes" checked>
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                                        </td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes" checked>
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="tab-pane" id="messages">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes" checked>
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                                        </td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="tab-pane" id="settings">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes" checked>
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                                        </td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12">
+
                             <div class="card">
-                                <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Employees Stats</h4>
-                                    <p class="category">New employees on 15th September, 2016</p>
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Diagnósticos</h4>
+                                    
                                 </div>
                                 <div class="card-content table-responsive">
-                                    <table class="table table-hover">
-                                        <thead class="text-warning">
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
+                                    <table class="table">
+                                        <thead class="text-info">
+                                            <th>Fecha</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            
+                                            <th>Fecha Fin</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                            </tr>
+                                            <?php
+                            
+                            $query = "SELECT idDIAGNOSTICO,Nombre,FechaInicio,Descripcion,FechaFin FROM DIAGNOSTICO WHERE PACIENTE_idPACIENTE=$id;";
+ 
+                            $result = mysqli_query($enlace, $query);
+                            
+
+                            while($row = mysqli_fetch_array($result)){ ?>
+                              
+                              <tr class='clickable-row' data-href='TablasCGyC.php?id=<?php echo $id;?>&idDiag=<?php echo $row['idDIAGNOSTICO'];?>'>
+                                
+                                <td><?php echo $row['FechaInicio']; ?></td>
+                                <td><?php echo $row['Nombre']; ?></td>
+                                <td><?php echo $row['Descripcion']; ?></td>
+                                
+                                <td><?php echo $row['FechaFin']; ?></td>
+    
+                              </tr>
+                              <?php
+                                }
+                                ?>
                                         </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header" data-background-color="azul">
+                                    <h4 class="title">Citas </h4>
+                                    
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-info">
+                                            <th>Fecha Hora</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                            <th>Médico</th>
+                                        </thead>
+                                        <tbody>
+                       <?php
+           $enlace = mysqli_connect("slh.chjrd0648elz.us-west-2.rds.amazonaws.com", "proteco", "proteco123", "clinicaslh");
+
+           if (!$enlace) {
+                   echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+                   echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+                   echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+                   exit;
+           }
+           
+        $query = "SELECT CITA.FechaHora, CITA.Tipo, CITA.Descripcion, PACIENTE.Nombre AS Pac_Nombre,PACIENTE.ApellidoPat AS Pac_ApP, PACIENTE.ApellidoMat AS Pac_ApM, PACIENTE.Telefono, MEDICO.Nombre AS Med_Nombre, MEDICO.ApellidoPat AS Med_ApP,MEDICO.ApellidoMat AS Med_ApM FROM CITA INNER JOIN PACIENTE ON PACIENTE.idPACIENTE = CITA.PACIENTE_idPACIENTE INNER JOIN MEDICO ON MEDICO.CedProf = CITA.MEDICO_CedProf WHERE PACIENTE.idPACIENTE = $id;";
+
+           $result = mysqli_query($enlace, $query);
+            
+           while($row = mysqli_fetch_array($result)){ ?>
+             
+             <tr>
+               <td><?php echo $row['FechaHora']; ?></td>
+               <td><?php echo $row['Tipo']; ?></td>
+               <td><?php echo $row['Descripcion']; ?></td>
+               <td><?php echo $row['Med_Nombre'] . " " . $row['Med_ApP'] . " " . $row['Med_ApM']; ?></td>
+             </tr>
+             <?php
+               }?>
+                    </tbody>
                                     </table>
                                 </div>
                             </div>

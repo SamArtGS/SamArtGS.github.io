@@ -2,7 +2,7 @@
     header('Content-Type: text/html; charset=UTF-8');
     session_start();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
-    if (!isset($_SESSION['medico'])){
+    if (!isset($_SESSION['admin'])){
         header('Location: IniciarSesion.php');//Aqui lo redireccionas al lugar que quieras.
         die();
       }
@@ -38,61 +38,47 @@
 
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"> ⚕︎ Clínica San Luis Huexotla</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navigation-example-2">
-                        <ul class="nav navbar-nav navbar-right">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"> ⚕︎ Clínica San Luis Huexotla</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigation-example-2">
+                <ul class="nav navbar-nav navbar-right">
+                      
+                     
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons text-gray">face</i>
+                                  Perfil
+                              
+                          </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown-header">
+                                  Administración
+                              </li>
+                              
+                              
+                              <li class="divider"></li>
                               <li>
-                                  <a href="ListaPaciente.php">
-                                    <i class="material-icons text-gray">table_chart</i>
-                                      Tabla general
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="Calendario.php">
-                                        <i class="material-icons text-gray">insert_invitation</i>
-                                      Calendario
-                                  </a>
-                              </li>
-                             
-                              <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons text-gray">face</i>
-                                          Perfil
-                                      
-                                  </a>
-                                  <ul class="dropdown-menu">
-                                      <li class="dropdown-header">
-                                          <?php echo $_SESSION['medico'];
-                                          ?>
-                                      </li>
-                                      <li>
-                                          <a href="PerfilMedico.php">Datos médicos</a>
-                                      </li>
-                                      
-                                      <li class="divider"></li>
-                                      <li>
-                                        
-                                        <a href="cerrarSesion.php">Cerrar Sesión</a></li>
-                                  </ul>
-                              </li>
-                         </ul>
-                         <form class="navbar-form navbar-right" role="search">
-                            
-                        </form>
-                      </div><!-- /.navbar-collapse -->
+                                
+                                <a href="cerrarSesion.php">Cerrar Sesión</a></li>
+                          </ul>
+                      </li>
+                 </ul>
+                 <form class="navbar-form navbar-right" role="search">
+                    
+                </form>
+              </div><!-- /.navbar-collapse -->
 
-                        
-                </div>
-            </nav>
+                
+        </div>
+    </nav>
   
 
 
@@ -101,31 +87,27 @@
 
 <div class="content">
 <div class="container-fluid" >
-          <h2 class="title text-center" style="padding-top: 70px">Lista de pacientes</h2>
-
+          <h2 class="title text-center" style="padding-top: 70px">Reporte de Pacientes </h2>
+         
 <div class="row" align="center">
 
-
-                <div class="col-lg-3 col-sm-4" align="center">
+<div class="col-lg-3 col-sm-4" align="center">
                       <div class="form-group">
-                        <input type="text"  placeholder="Buscar Paciente" class="form-control" name="busqueda" id="busqueda" />
+                        <h3>Periodo:</h3>
                       </div>
                     </div>
 
   <div class="col-lg-3 col-sm-4 " style="padding-top: 20px"  align="center">
-                  <select id="categoria" class="selectpicker" data-style="select-with-transition"  data-size="7">
-                    <option value="1">Nombre</option>
-                    <option value="2">Número Telefónico</option>
-                    <option value="8">ID </option>
+  
+    <select id="categoria" name ="categoria" class="selectpicker" data-style="select-with-transition"  data-size="7">
+                    <option value="1">Diario</option>
+                    <option value="2">Semanal</option>
+                    <option value="3">Mensual</option>
                   </select>
-                </div>
+                
+  </div>
   
-
-  <button class="btn btn-danger" align="center" onclick="ClearFields(); obtener_registros();"> <i class="material-icons">delete</i> Limpiar</button>
-  
-  <button class="btn btn-warning" align="center" onclick="window.location.href='Reportes.php'"> <i class="material-icons" >bar_chart</i>  Reportes</button>
-  <button class="btn btn-info" align="center" onclick="window.location.href='IngresarUsuario.php'"> <i class="material-icons">person_add</i>Nuevo</button>
-  <button class="btn btn-success" align="center"> <i class="material-icons">search</i>  Buscar</button>
+  <!-- <button class="btn btn-success" align="center"> <i class="material-icons">get_app</i>Descargar</button> -->
 
 </div>
 
@@ -205,17 +187,10 @@
     });
   </script>
   <script type="text/javascript">
-    function ClearFields() {
-
-     document.getElementById("busqueda").value = "";
-     document.getElementById("categoria").value = "";
-}
-  </script>
-  <script type="text/javascript">
     $().ready(function(){
 
       materialKitDemo.initContactUs2Map();
     });
   </script>
-  <script src="assets/js/buscar.js"></script>
+  <script src="assets/js/reportes.js"></script>
 </html>
