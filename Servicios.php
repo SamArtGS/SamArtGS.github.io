@@ -38,7 +38,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="presentation.html"> ⚕︎ Clínica San Luis Huexotla </a> 
+            <a class="navbar-brand" href="index.php"> ⚕︎ Clínica San Luis Huexotla </a>
           </div>
 
 
@@ -46,11 +46,8 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
 
-
-
-
             <li>
-            <a href="index.html">
+            <a href="Somos.php">
               <i class="material-icons">supervised_user_circle</i> ¿Quiénes somos?
             </a>
             </li>
@@ -58,18 +55,10 @@
 
 
             <li>
-            <a href="index.html">
+            <a href="Servicios.php">
               <i class="material-icons">grade</i> Servicios
             </a>
             </li>
-
-
-            <li>
-            <a href="index.html">
-              <i class="material-icons">loyalty</i> Boletín
-            </a>
-            </li>
-
 
 
 
@@ -88,17 +77,13 @@
 
 
 
-              <li>
-                <a href="sections.html#headers">
-                  <i class="material-icons">calendar_today</i> Agenda una cita
-                </a>
-              </li>
+              
 
 
 
 
               <li>
-                <a href="Ubicacion.html">
+                <a href="Ubicacion.php">
                   <i class="material-icons">map</i> Ubicación
                 </a>
               </li>
@@ -107,7 +92,7 @@
 
 
               <li>
-                <a href="sections.html#blogs">
+                <a href="Contacto.php">
                   <i class="material-icons">contact_phone</i> Contacto
                 </a>
               </li>
@@ -118,7 +103,7 @@
           </li>
 
           <li>
-            <a href="IniciarSesion.html">
+            <a href="IniciarSesion.php">
               <i class="material-icons">https</i> Iniciar Sesión
             </a>
             </li>
@@ -135,30 +120,33 @@
 
 
 
-  <div class="page-header header-filter " data-parallax="true" style="background-image: url('bg2.jpg');">
+  <div class="page-header header-filter " data-parallax="true" style="background-image: url('bg2.JPG');height: 100vh; background-size: cover; ">
     <div class="container">
        <div class="row">
           <div class="col-md-8 col-md-offset-2 text-center">
-            <h3 class="title"> Por la calidad de la salud</h3>
-                      <h4>Profesionalidad y calidad</h4>
+            <h1 class="title">Clínica San Luis Huexotla</h1>
+                      <h4>Institución de sanitaria la servicio de tu salud</h4>
+          </div>
+          <div class="col-md-10 col-md-offset-1" align="center">
+            <h3 class="title">Servicios que ofrecemos </h3>
+            <h5 > <b>Medicina general </b></h5>
+            <h5 > <b>Medicina interna</b></h5>
+            <h5 > <b>Ginecología y obstetricia</b></h5>
+            <h5 > <b> Cirugía general</b></h5>
+            <h5 ><b> Pediatría </b></h5>
+          </div>
                 </div>
-            </div>
+
+
+        
+
+
         </div>
   </div>
 
 
 
 
-  <div class="main main-raised">
-        <div class="section section-basic">
-          <div class="container">
-              <div class="title">
-                  <h2>Somos una institución sanitaria con más de 20 años al servicio de la comunidad</h2>
-                </div>
-                
-            </div>
-          </div>
-</div>
 
 
 
@@ -167,41 +155,7 @@
 
 
 
-
-
-
-
-             <div class="container" >
-                <div class="modal fade login" id="loginModal">
-                     <div class="modal-dialog login animated" style="align-self: center !important;">
-
-                         <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-header" style="align-self: center;">
-                                <h5 class="">Iniciar sesión</h>
-                                   
-                               </div>
-                               
-                               <div class="modal-body">
-                                   <div class="box">
-                                        <div class="content">
-                                           <div class="error"></div>
-                                           <div class="form loginBox">
-                                               <form method="" action="" accept-charset="UTF-8">
-                                               <input id="email" class="form-control" type="password" placeholder="Cédula Profesional" name="email">
-                                               <input id="password" class="form-control" type="password" placeholder="Contraseña" name="password">
-                                               <input class="btn btn-default btn-login" type="button" value="Iniciar" onclick="loginAjax()">
-                                               </form>
-                                           </div>
-                                        </div>
-                                   </div>
-                               </div>
-                         </div>
-                     </div>
-                 </div>
-               </div>
+             
             
 </body>
 <script src="assets/js/jquery.min.js" type="text/javascript"></script>

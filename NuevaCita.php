@@ -261,43 +261,26 @@
                                      
                                         <div class="row">
 
-                                            <div class="col-md-1">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Día</label>
-                                                            <input type="text" class="form-control" required name="dia">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                              <label class="label-control">Fecha de la cita</label>
+                                              <input type="date" class="form-control" name="fecha" min="2020-01-05">
+                                            </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group ">
+                                                    <label class="label-control" style="font-size: 12px !important">Hora</label>
+                                                            <input type="time" class="form-control" min="09:00" max="20:00" name="hora" >
                                                 </div>
                                             </div>
-                                            <div class="col-md-1">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Mes</label>
-                                                            <input type="text" class="form-control" required name="mes" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Año</label>
-                                                            <input type="text" class="form-control" required name="anio" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Hora</label>
-                                                            <input type="text" class="form-control" required name="hora" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Minuto</label>
-                                                            <input type="text" class="form-control" required name="minuto" >
-                                                </div>
-                                            </div>
+                                            
                                                                                         
                                         </div>
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Tipo</label>
-                                                            <input type="text" class="form-control" required name="tipo">
+                                                            <input type="text" class="form-control" maxlength="30" required name="tipo">
                                                 </div>
                                             </div>
                                         </div>
@@ -305,7 +288,7 @@
                                             <div class="col-md-8">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Descripción</label>
-                                                            <input type="text" class="form-control" required name="descripcion">
+                                                            <input type="text" class="form-control" maxlength="40" required name="descripcion">
                                                 </div>
                                             </div>
                                         </div>

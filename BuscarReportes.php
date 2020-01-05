@@ -72,11 +72,6 @@ echo $printTotal;
 
 
 $script = "<script type='text/javascript'>
-jQuery(document).ready(function($) {
-  $('.clickable-row').click(function() {
-      window.location = $(this).data('href');
-  });
-});
-</script>";
+";
 echo $script;            
 ?>

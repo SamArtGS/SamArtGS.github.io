@@ -108,7 +108,7 @@
 
                 <div class="col-lg-3 col-sm-4" align="center">
                       <div class="form-group">
-                        <input type="text"  placeholder="Buscar Paciente" class="form-control" name="busqueda" id="busqueda" />
+                        <input type="text"  placeholder="Buscar Paciente" maxlength="30" class="form-control" name="busqueda" id="busqueda" />
                       </div>
                     </div>
 
@@ -137,10 +137,12 @@
 
             
 </body>
+
 <script type="text/javascript">
   var tableCells = document.querySelectorAll("td[celda]");
   window.onclick
 </script>
+
 <script src="assets/js/jquery.min.js" type="text/javascript"></script>
   <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="assets/js/material.min.js"></script>

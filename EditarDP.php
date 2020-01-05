@@ -44,6 +44,10 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 
+
+<link rel="stylesheet" type="text/css" href="css/jquery.maxlength.css">
+<script type="text/javascript" src="js/jquery.plugin.js"></script>
+<script type="text/javascript" src="js/jquery.maxlength.js"></script>
 </head>
 
 <body>
@@ -203,7 +207,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" name="nombres" class="form-control" value="<?php echo $row[0]; ?>" required>
+                                                            <input type="text" name="nombres" maxlength="40" class="form-control" value="<?php echo $row[0]; ?>" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -217,7 +221,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" name="apellidopat" class="form-control" value="<?php echo $row[0]; ?>" required>
+                                                            <input type="text" name="apellidopat" maxlength="40" class="form-control" value="<?php echo $row[0]; ?>" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -231,7 +235,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" name="apellidomat" class="form-control" value="<?php echo $row[0]; ?>" required>
+                                                            <input type="text" name="apellidomat" maxlength="40"  class="form-control" value="<?php echo $row[0]; ?>" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -291,7 +295,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" name="fechanacimiento" class="form-control" value="<?php echo $row[0]; ?>">
+                                                            <input type="date" max="2020-01-05" name="fechanacimiento" class="form-control" value="<?php echo $row[0]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -305,7 +309,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="number" name="telefono" class="form-control" value="<?php echo $row[0];?>" required>
+                                                            <input type="number" name="telefono" class="form-control" min="1111111111" max="9999999999" value="<?php echo $row[0];?>" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -322,7 +326,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" class="form-control" name="direccion" value="<?php echo $row[0]; ?>">
+                                                            <input type="text" class="form-control" maxlength="70" name="direccion" value="<?php echo $row[0]; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -338,7 +342,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" class="form-control" name="ciudad" value="<?php echo $row[0]; ?>">
+                                                            <input type="text" class="form-control" maxlength="20"  name="ciudad" value="<?php echo $row[0]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -352,7 +356,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" class="form-control" name="estado" value="<?php echo $row[0]; ?>">
+                                                            <input type="text" class="form-control" maxlength="20" name="estado" value="<?php echo $row[0]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -366,7 +370,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="number" class="form-control" name="cp" value="<?php echo $row[0]; ?>">
+                                                            <input type="number" class="form-control" name="cp" max="99999" value="<?php echo $row[0]; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -382,7 +386,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" class="form-control" name="EstadoCivil" value="<?php echo $row[0]; ?>">
+                                                            <input type="text" class="form-control" maxlength="20" name="EstadoCivil" value="<?php echo $row[0]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -396,7 +400,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" class="form-control" name="religion" value="<?php echo $row[0]; ?>">
+                                                            <input type="text" class="form-control" maxlength="20" name="religion" value="<?php echo $row[0]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -410,7 +414,7 @@
                                                             }
                                                             $row = mysqli_fetch_array($result);
                                                             ?>
-                                                            <input type="text" class="form-control" name="lugarnacimiento" value="<?php echo $row[0]; ?>">
+                                                            <input type="text" class="form-control" maxlength="30" name="lugarnacimiento" value="<?php echo $row[0]; ?>">
                                                 </div>
                                             </div>
                                         </div>

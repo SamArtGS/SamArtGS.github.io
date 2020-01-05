@@ -25,25 +25,37 @@ if (!isset($_SESSION['medico'])){
     }
                     
 
-$dia = $_POST['dia'];
-$mes = $_POST['mes'];
-$anio = $_POST['anio'];
+$fecha = $_POST['fecha'];
+
 $hora = $_POST['hora'];
-$minuto = $_POST['minuto'];
+
 $tipo = $_POST['tipo'];
 $descripcion = $_POST['descripcion'];
 
 if(isset($_POST['medicoSeleccionado']) ){
     $ced=$_POST['medicoSeleccionado'];
 }
-    
-$sql = "INSERT INTO CITA(FechaHora,Tipo,PACIENTE_idPACIENTE,MEDICO_CedProf,Descripcion) VALUES ('$anio-$mes-$dia $hora:$minuto:00','$tipo',$id,$ced,'$descripcion');";
 
+$chequeo = "SELECT COUNT(*) FROM CITA WHERE FechaHora='$fecha $hora:00' AND MEDICO_CedProf=$ced;";
+$sql = "INSERT INTO CITA(FechaHora,Tipo,PACIENTE_idPACIENTE,MEDICO_CedProf,Descripcion) VALUES ('$fecha $hora:00','$tipo',$id,$ced,'$descripcion');";
     
-if(mysqli_query($enlace, $sql)){
-	header("Location: CitasPaciente.php?id=$id");
-}else{
-	header("Location: CitasPaciente.php?id=$id");
-}
+if(mysqli_query($enlace, $chequeo)){
+        $result = mysqli_query($enlace, $chequeo);
+        $row = mysqli_fetch_array($result);
+        if(empty($row['0'])) {
+            if(mysqli_query($enlace, $sql)){
+                header("Location: CitasPaciente.php?id=$id");
+                die();
+            }
+        }else{
+            echo "<script type='text/javascript'>alert('Hay traslape de horarios');</script>";
+            header("Location: CitasPaciente.php?id=$id");
+            die();
+        }
+    
+    }else{
+        die();
+    }
+
 ?>
 

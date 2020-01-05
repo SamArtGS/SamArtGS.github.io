@@ -296,44 +296,44 @@
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating" required>
                                                     <label class="control-label">Temp (ºC)</label>
-                                                    <input type="number" step="0.1" class="form-control" name="Temperatura" required> ºC
+                                                    <input type="number" step="0.1" class="form-control" name="Temperatura" min="35" max="42" required> ºC
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">TA</label>
-                                                    <input type="number" class="form-control" name="TA1" required> <h6 align="center">/</h3>
-                                                    <input type="number" class="form-control" name="TA2" required>
+                                                    <input type="number" class="form-control" name="TA1" required min="100" max="300"> <h6 align="center">/</h3>
+                                                    <input type="number" class="form-control" name="TA2" required min="100" max="350">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">FC</label>
-                                                    <input type="number" class="form-control" name="FC" required> 
+                                                    <input type="number" class="form-control" name="FC" required min="0" max="250">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">FR</label>
-                                                    <input type="number" class="form-control" name="FR" required>
+                                                    <input type="number" class="form-control" name="FR" required min="0" max="50">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Ox:</label>
-                                                    <input type="number" class="form-control" name="OX" required> %
+                                                    <input type="number" class="form-control" name="OX" required min="0" max="100"> %
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Peso </label>
-                                                    <input type="number" step="0.001" class="form-control" name="Peso" required> KG
+                                                    <input type="number" step="0.001" class="form-control" min="0" max="160" name="Peso" required> KG
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Talla</label>
-                                                    <input type="number" class="form-control" name="Talla" required>CM
+                                                    <input type="number" class="form-control" name="Talla" min="0" max="250" required>CM
                                                 </div>
                                             </div>
                                         </div>
@@ -387,81 +387,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            Todavía no toquen ésta parte 
-                                            <h5 align="center"> <b>Archivos adjuntos *</b></h5>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label"> Número de archivos adjuntos:</label>
-                                                        <input type="number" class="form-control" placeholder="                                                          3">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="file" id="inputFile2" multiple="">
-                                                <div class="input-group">
-                                                <input type="text" readonly="" class="form-control" placeholder="Añadir archivo">
-                                                    <span class="input-group-btn input-group-s">
-                                                        <button type="button" class="btn btn-just-icon btn-round btn-primary">
-                                                                <i class="material-icons">attach_file</i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Tipo</label>
-                                                    <input type="text" class="form-control" placeholder="        Análisis de laboratorio de sangre">
-                                                </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="file" id="inputFile2" multiple="">
-                                                <div class="input-group">
-                                                <input type="text" readonly="" class="form-control" placeholder="Añadir archivo">
-                                                    <span class="input-group-btn input-group-s">
-                                                        <button type="button" class="btn btn-just-icon btn-round btn-primary">
-                                                                <i class="material-icons">attach_file</i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Tipo</label>
-                                                    <input type="text" class="form-control" placeholder="         Radiografía de fémur">
-                                                </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="file" id="inputFile2" multiple="">
-                                                <div class="input-group">
-                                                <input type="text" readonly="" class="form-control" placeholder="Añadir archivo">
-                                                    <span class="input-group-btn input-group-s">
-                                                        <button type="button" class="btn btn-just-icon btn-round btn-primary">
-                                                                <i class="material-icons">attach_file</i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                    <label class="control-label" style="font-size: 12px !important">Tipo</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                        </div>
-                                        </div>
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                            <p>*Archivos tales como análisis de laboratorio, radiografías, cultivos, etc. <b>PDF</b></p>
-                                            </div>
-                                        </div>
+                                        
                                         <button type="submit" class="btn btn-success pull-right">Guardar nota médica</button>
                                         <div class="clearfix"></div>
                                     </form>

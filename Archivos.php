@@ -181,55 +181,32 @@
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-info">
-                                            <th>Fecha-Hora</th>
+                                            <th>Fecha</th>
                                             <th>Tipo</th>
-                                            <th>Padecimiento</th>
-                                            <th>Diagnóstico</th>
-                                            <th>Nota Médica</th>
+                                            
+                                            
+                                            <th>Nombre Archivo</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de Orina</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15:30 17-12-2019</td>
-                                                <td>Análisis de cultivo</td>
-                                                <td>Dolores estomacales intensos</td>
-                                                <td >Úlceras</td>
-                                                <td><i class="material-icons text-blue">list_alt</i> Consultar</td>
-                                            </tr>
+                                            <?php
+                            
+                            $query = "SELECT * FROM ESTUDIO INNER JOIN NOTA_MEDICA ON NOTA_MEDICA.idNOTA_MEDICA = ESTUDIO.NOTA_MEDICA_idNOTA_MEDICA INNER JOIN DIAGNOSTICO ON DIAGNOSTICO.idDIAGNOSTICO = NOTA_MEDICA.CONSULTAGENERAL_DIAGNOSTICO_idDIAGNOSTICO WHERE DIAGNOSTICO.PACIENTE_idPACIENTE = $id";
+ 
+                            $result = mysqli_query($enlace, $query);
+                            
+
+                            while($row = mysqli_fetch_array($result)){ ?>
+                              
+                              <tr class='clickable-row' data-href="view.php?file=<?php echo $row['idESTUDIO'];?>">
+                                
+                                <td><?php echo $row['Fecha']; ?></td>
+                                <td><?php echo $row['Tipo']; ?></td>
+                                <td><?php echo $row['NombreArchivo']; ?></td>
+    
+                              </tr>
+                              <?php
+                                }
+                                ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -267,5 +244,12 @@
 
     });
 </script>
-
+<script>
+jQuery(document).ready(function($) {
+  $('.clickable-row').click(function() {
+      window.location = $(this).data('href');
+  });
+});
+</script>
+</script>
 </html>

@@ -103,22 +103,22 @@
     
 <form class="form" method="post" action="NuevoMedico.php">
       <h5 class="title text-center" style="padding-top: ">Cédula Profesional: </h5> <div class="form-group">
-        <input type="number"  placeholder="Ingresa aquí la cédula" class="form-control" name="cedula" required>
+        <input type="number"  placeholder="Ingresa aquí la cédula" class="form-control" name="cedula" max="99999999" min="1111111" required>
       </div>
 
         <h5 class="title text-center" style="padding-top: ">Nombre: </h5> <div class="form-group">
-          <input type="text"  placeholder="Ingresa el nombre completo" class="form-control" name="nombre" required>
+          <input type="text"  placeholder="Ingresa el nombre completo" class="form-control" name="nombre" maxlength="40" required>
         </div>
 
         <h5 class="title text-center" style="padding-top: ">Apellido Paterno: </h5> <div class="form-group">
-          <input type="text"  placeholder="Ingresa Apellido Paterno" class="form-control" name="apellidopat" required>
+          <input type="text"  placeholder="Ingresa Apellido Paterno" class="form-control" name="apellidopat" maxlength="20" required>
         </div>
 
     <h5 class="title text-center" style="padding-top: ">Apellido Materno: </h5> <div class="form-group">
-  <input type="text"  placeholder="Ingresa Apellido Materno" class="form-control" name="apellidomat" required>
+  <input type="text"  placeholder="Ingresa Apellido Materno" class="form-control" name="apellidomat" maxlength="20" required>
 </div>
     <h5 class="title text-center" style="padding-top: ">Contraseña: </h5> <div class="form-group">
-  <input type="text"  placeholder="Ingresa contraseña, se encriptará" class="form-control" name="contrasena" required>
+  <input type="text"  placeholder="Ingresa contraseña, se encriptará" class="form-control" name="contrasena" minlength="8" maxlength="15" required>
 </div>
 
 

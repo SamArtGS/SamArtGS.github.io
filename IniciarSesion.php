@@ -38,7 +38,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="presentation.html"> ⚕︎ Clínica San Luis Huexotla </a> 
+            <a class="navbar-brand" href="index.php"> ⚕︎ Clínica San Luis Huexotla </a>
           </div>
 
 
@@ -46,11 +46,8 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
 
-
-
-
             <li>
-            <a href="index.html">
+            <a href="Somos.php">
               <i class="material-icons">supervised_user_circle</i> ¿Quiénes somos?
             </a>
             </li>
@@ -58,18 +55,10 @@
 
 
             <li>
-            <a href="index.html">
+            <a href="Servicios.php">
               <i class="material-icons">grade</i> Servicios
             </a>
             </li>
-
-
-            <li>
-            <a href="index.html">
-              <i class="material-icons">loyalty</i> Boletín
-            </a>
-            </li>
-
 
 
 
@@ -88,17 +77,13 @@
 
 
 
-              <li>
-                <a href="sections.html#headers">
-                  <i class="material-icons">calendar_today</i> Agenda una cita
-                </a>
-              </li>
+              
 
 
 
 
               <li>
-                <a href="Ubicacion.html">
+                <a href="Ubicacion.php">
                   <i class="material-icons">map</i> Ubicación
                 </a>
               </li>
@@ -107,7 +92,7 @@
 
 
               <li>
-                <a href="sections.html#blogs">
+                <a href="Contacto.php">
                   <i class="material-icons">contact_phone</i> Contacto
                 </a>
               </li>
@@ -118,7 +103,7 @@
           </li>
 
           <li>
-            <a href="IniciarSesion.html">
+            <a href="IniciarSesion.php">
               <i class="material-icons">https</i> Iniciar Sesión
             </a>
             </li>

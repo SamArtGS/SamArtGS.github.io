@@ -192,7 +192,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Nombre del diagnostico</label>
-                                                            <input type="text" name="nombrediag" class="form-control" required>
+                                                            <input type="text" maxlength="30" name="nombrediag" class="form-control" required>
                                                 </div>
                                             </div>
                                                                                         
@@ -201,7 +201,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label" style="font-size: 12px !important">Descripción</label>
-                                                            <input type="text" name="descripcion" class="form-control" required>
+                                                            <input type="text" maxlength="30" name="descripcion" class="form-control" required>
                                                 </div>
                                             </div>
 

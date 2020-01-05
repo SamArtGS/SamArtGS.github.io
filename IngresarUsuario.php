@@ -12,7 +12,7 @@
                         
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mx">
 
     <head>
   <meta charset="utf-8" />
@@ -34,6 +34,7 @@
 <link href="assets/css/material-dashboard.css" rel="stylesheet"/>
   <link href="assets/css/material-kit.css" rel="stylesheet"/>
 </head>
+
 
 <body class="section-white">
 
@@ -97,6 +98,7 @@
   
 <div class="content">
 <div class="container-fluid" >
+<form method="post" name="TablaUser" onsubmit="return validateForm();" action="GuardarPaciente.php">
         <div class="row" style="padding-top: 100px" >
                         <div class="col-md-12">
                             <div class="card">
@@ -108,31 +110,31 @@
 
                                 </div>
                                 <div class="card-content">
-                                    <form method="post" name="TablaUser"onsubmit="return validateForm()" action="GuardarPaciente.php">
+                                    
 
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Nombres</label>
-                                                    <input type="text" class="form-control" name="nombres" required>
+                                                    <input type="text" class="form-control" maxlength="40" name="nombres" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Apellido Paterno</label>
-                                                    <input type="text" class="form-control" name="apellidopat" required>
+                                                    <input type="text" class="form-control" maxlength="40" name="apellidopat" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Apellido Materno</label>
-                                                    <input type="text" class="form-control" name="apellidomat" required>
+                                                    <input type="text" class="form-control" maxlength="40" name="apellidomat" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Teléfono</label>
-                                                    <input type="number" class="form-control" name="telefono" required>
+                                                    <label class="control-label" for="valueToBeTested">Teléfono</label>
+                                                    <input type="number" class="form-control" name="telefono" min="1111111111" max="9999999999" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,9 +143,10 @@
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                               <label class="label-control">Fecha de nacimiento</label>
-                                              <input type="text" class="form-control datepicker" value="1978-04-12" name="fechanacimiento"/>
+                                              <input type="date" class="form-control" name="fechanacimiento" max="2020-01-05">
                                             </div>
                                             </div>
+
                                               <div class="col-lg-2 col-sm-4 " style="padding-top: 50px"  align="center">
                                               <select class="selectpicker form-control" data-style="select-with-transition"  title="Tipo de sangre" data-size="8" name="tiposangre">
                                                 <option value="A+">A+</option>
@@ -170,7 +173,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Dirección</label>
-                                                    <input type="text" class="form-control" name="direccion">
+                                                    <input type="text" class="form-control" name="direccion" maxlength="70">
                                                 </div>
                                             </div>
                                         </div>
@@ -178,19 +181,19 @@
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Ciudad</label>
-                                                    <input type="text" class="form-control" name="ciudad">
+                                                    <input type="text" class="form-control" maxlength="30" name="ciudad">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Estado</label>
-                                                    <input type="text" class="form-control" name="estado">
+                                                    <input type="text" class="form-control" maxlength="20" name="estado">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Código Postal</label>
-                                                    <input type="number" class="form-control" name="cp">
+                                                    <input type="number" class="form-control" maxlength="20" name="cp" max="99999">
                                                 </div>
                                             </div>
                                         </div>
@@ -198,19 +201,19 @@
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Estado Civil</label>
-                                                    <input type="text" class="form-control" name="EstadoCivil">
+                                                    <input type="text" class="form-control" maxlength="20" name="EstadoCivil">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Religión</label>
-                                                    <input type="text" class="form-control" name="religion">
+                                                    <input type="text" class="form-control" maxlength="20" name="religion">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Lugar de Nacimiento</label>
-                                                    <input type="text" class="form-control" name="lugarnacimiento">
+                                                    <input type="text" class="form-control" maxlength="40" name="lugarnacimiento">
                                                 </div>
                                             </div>
                                         </div>
@@ -225,8 +228,8 @@
                     </div>
                 </div>
             </div>
-            
 </body>
+
 
 <script type="text/javascript">
   function validateForm() {
@@ -240,6 +243,7 @@
     }
   }
 </script>
+
 
 <script src="assets/js/jquery.min.js" type="text/javascript"></script>
   <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>

@@ -16,7 +16,9 @@ $telefono     = $_POST['telefono'];
 
 
 
-$fechaNac     = $_POST['fechanacimiento'];
+$fechaNac  = $_POST['fechanacimiento'];
+
+    
 if(isset($_POST['tiposangre']) ){
     $sangre=$_POST['tiposangre'];
 }
@@ -33,18 +35,16 @@ $EdoCivil     = $_POST['EstadoCivil'];
 $religion      = $_POST['religion'];
 $lugarnacimiento  = $_POST['lugarnacimiento'];
 
-$sql = "INSERT INTO PACIENTE(Nombre,ApellidoPat,ApellidoMat,Direccion,Ciudad,Estado,CP,Telefono,EstadoCivil,Religion,LugarNacim,TipoSangre) VALUES ('$nombres','$apellidoPat','$apellidoMat','$direccion','$ciudad','$estado','$cp','$telefono','$EdoCivil','$religion','$lugarnacimiento','$sangre');";
-
+    $sql = "INSERT INTO PACIENTE(Nombre,ApellidoPat,ApellidoMat,Direccion,Ciudad,Estado,CP,Telefono,EstadoCivil,Religion,LugarNacim,TipoSangre,FechaNacimiento) VALUES ('$nombres','$apellidoPat','$apellidoMat','$direccion','$ciudad','$estado','$cp',$telefono,'$EdoCivil','$religion','$lugarnacimiento','$sangre','$fechaNac');";
+    
 if(mysqli_query($enlace, $sql)){
-	phpAlert("Paciente correctamente agregado");
+	
 	header("Location: ListaPaciente.php");
 }else{
-	phpAlert("Error al ingresar al paciente");
+	
 	header("Location: ListaPaciente.php");
 }
 
     
-function phpAlert($msg) {
-    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
-}
+
 ?>
